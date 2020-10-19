@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Kodchasan:wght@400;500;600;700&family=Orbitron:wght@400;800&display=swap');
+@import "variables";
+
+body {
+  font-family: 'Kodchasan', sans-serif;
+  color: white;
+  line-height: 1.6;
+  font-size: 1.6rem;
+}
+
+a {
+  text-decoration: none;
+  color: $cta-color;
+  font-weight: 700;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.container {  
+  text-shadow: $text-shadow;
+
+  input, textarea {
+    text-shadow: $text-shadow;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+  }
+
+  [type=checkbox]:focus-visible + label,
+  label:hover,
+  label:focus-visible,
+  [type=checkbox]:checked + span,
+  label:hover span,
+  [type=checkbox]:focus-visible + span,
+  .checkboxGrid a:focus-visible,
+  .checkboxGrid a:hover {
+    color: white !important;
+    text-decoration: none;
+  }
+
+  .checkboxGrid > a:focus-visible,
+  .checkboxGrid > a {
+    font-weight: 400;
+  }
+
+  :checked {
+    &::before {
+      content: '\2713';
+    }
+  }
+
+  ::placeholder,
+  [type=checkbox]:not(:checked) + label,
+  [type=checkbox]:not(:checked) + span,
+  .checkboxGrid a {
+    color: gray;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: 'Orbitron', sans-serif; }

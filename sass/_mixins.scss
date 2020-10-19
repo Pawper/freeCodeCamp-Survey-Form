@@ -1,0 +1,154 @@
+@import "variables";
+
+@mixin border($type: static) {
+  border: none;
+
+  @if $type == static {
+    &:not(fieldset) {
+      box-shadow:
+        inset 1px 1px 0 white,
+        inset 1px -1px 0 white,
+        inset -1px 1px 0 white,
+        inset -1px -1px 0 white;
+    }
+    
+    // NOTE: Firefox doesn't support box-shadow for fieldset
+    &:is(fieldset) {
+      border: 1px solid rgba(white, 0.5);
+    }
+    &:-webkit-any(fieldset) {
+      border: 1px solid rgba(white, 0.5);
+    }
+  }
+
+  @if $type == unfocus {
+    box-shadow: 
+      inset 1px 1px 0 rgba(white, 0.1),
+      inset 1px -1px 0 rgba(white, 0.1),
+      inset -1px 1px 0 rgba(white, 0.1),
+      inset -1px -1px 0 rgba(white, 0.1);
+    transition: all .1s ease;
+  }
+
+  @if $type == focus {
+    box-shadow:
+      inset 2px 2px 0 white,
+      inset 2px -2px 0 white,
+      inset -2px 2px 0 white,
+      inset -2px -2px 0 white;
+    outline: none;
+  }
+
+  @if $type == midfocus {
+    box-shadow:
+      inset 1px 1px 0 white,
+      inset 1px -1px 0 white,
+      inset -1px 1px 0 white,
+      inset -1px -1px 0 white,
+      1px 1px 0 white,
+      1px -1px 0 white,
+      -1px 1px 0 white,
+      -1px -1px 0 white;
+    outline: none;
+  }
+}
+
+@mixin box($box-type: none) {
+  display: block;
+  padding: 0.5rem;
+  border-radius: 3px;
+
+  @if $box-type == none {
+    @include border(static);
+    padding: 1rem;
+  }
+
+  @if $box-type == input {
+    background-color: rgba(black, 0.75);
+    @include border(unfocus);
+    -moz-appearance: textfield;
+
+    &:hover, &:focus-visible {
+      @include border(focus);
+      background: $focus-bg;
+    }
+
+    &[type="number"]::-webkit-inner-spin-button,
+    &[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type="checkbox"] {
+      display: inline-block;
+      font-size: 1.4rem;
+      padding: 0;
+      position: relative;
+      top: .4rem;
+      height: 2rem;
+      width: 2rem;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -o-appearance: none;
+      appearance: none;
+      cursor: pointer;
+      @include border(unfocus);
+
+      &:focus {
+        outline: none;
+      }
+  
+      &:focus-visible, &:hover {
+        @include border(focus);
+        background: $focus-bg;
+      }
+    }
+  }
+}
+
+.activated {
+  animation: pulse .75s;
+}
+
+@keyframes pulse {
+	0% {
+		box-shadow: 
+    inset 2px 2px 0 white,
+    inset 2px -2px 0 white,
+    inset -2px 2px 0 white,
+    inset -2px -2px 0 white,
+    0 0 0 0 rgba(white, 0),
+    0 0 0 0 rgba(white, 0.7);
+    background: rgba(black, .5) linear-gradient(transparent, rgba(white, .2));
+  }
+
+  20% {
+    background: white linear-gradient(transparent, rgba(white, .2));
+  }
+
+  30% {
+    background: rgba(white, .5) linear-gradient(transparent, rgba(white, .2));
+  }
+
+	70% {
+		box-shadow: 
+    inset 1px 1px 0 white,
+    inset 1px -1px 0 white,
+    inset -1px 1px 0 white,
+    inset -1px -1px 0 white,
+    0 0 0 10px rgba(white, 0),
+    0 0 2rem 2rem rgba(white, 0);
+    background: rgba(black, .5) linear-gradient(transparent, rgba(white, .2));
+  }
+
+	100% {
+		box-shadow: 
+    inset 1px 1px 0 rgba(white, .1),
+    inset 1px -1px 0 rgba(white, .1),
+    inset -1px 1px 0 rgba(white, .1),
+    inset -1px -1px 0 rgba(white, .1),
+    0 0 0 0 rgba(white, 0),
+    0 0 0 0 rgba(white, 0);
+    background: rgba(black, .5) linear-gradient(transparent, rgba(white, .2));
+	}
+}

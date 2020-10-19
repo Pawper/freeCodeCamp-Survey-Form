@@ -1,0 +1,301 @@
+@import "mixins";
+
+.form {
+  user-select: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 1rem;
+  color: rgba(white, 0.9);
+
+  & label {
+    cursor: pointer;
+  }
+
+  &__textinput {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+
+    &-label {
+      display: block;
+      line-height: 0;
+      padding-top: 1rem;
+    }
+
+    &-input {
+      @include box(input);
+      padding: 1rem;
+
+      &:focus, &:hover {
+        & + label {
+          font-weight: 700;
+          font-size: 1.7rem;
+        }
+      }
+    }
+  }
+
+  &__fieldset {
+    @include box();
+    padding-top: .25rem;
+    transform: scaleY(1);
+    transform-origin: top center;
+    max-height: auto;
+    opacity: 1;
+    transition: all .3s ease-out;
+    align-self: start;
+    
+    fieldset {
+      margin-top: .5rem;
+    }
+
+    legend {
+      margin: 0 -1.2rem;
+      padding-right: .5rem;
+    }
+  }
+
+  .actualcheckbox {
+    @include box(input);
+    
+    &:checked {
+      &::before {
+        position: absolute;
+        left: .5rem;
+        text-align: center;
+      }
+    }
+  }
+
+  .unpreferred:checked ~ *:not([for="unpreferred"]) {
+    transform: scaleY(0);
+    transform-origin: top center;
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 91%;
+    left: 1.5rem;
+    transition: all .3s ease-out;
+  }
+
+  &__toggle {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3, min-content);
+    gap: 0.5rem;
+
+    &-input {
+      opacity: 0;
+      position: absolute;
+    }
+
+    &-label {
+      display: block;
+      width: 4rem;
+      height: 2rem;
+      text-indent: -150%;
+      clip: rect(0 0 0 0);
+      color: transparent;
+      user-select: none;
+      position: relative;
+      grid-area: 1 / 2 / 2 / 3;
+
+      &::before,
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        cursor: pointer;
+      }
+
+      &::before {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(black, 0.75);
+        border-radius: 10rem;
+        @include border(unfocus);
+        transition: all 0.2s ease;
+      }
+
+      &::after {
+        top: 0.2rem;
+        left: 0.3rem;
+        width: 1.65rem;
+        height: 1.6rem;
+        border-radius: 50%;
+        background-color: rgba(black, 0.75);
+        transition: all 0.2s ease;
+        @include border(unfocus)
+      }
+    }
+
+    &-input:checked + &-label::after {
+      left: 2rem;
+    }
+
+    &-input:not(:checked) ~ .toggleRight,
+    &-input:checked ~ .toggleLeft {
+      color: gray;
+    }
+
+    &-input:focus-visible + &-label::before, &-input:hover + &-label::before {
+      @include border(midfocus);
+      background: $focus-bg;
+    }
+    &-input:focus-visible + &-label::after, &-input:hover + &-label::after {
+      background-color: white;
+    }
+  }
+
+  .genderExpressions {
+    display: grid;
+    grid-template-columns: auto min-content;
+    gap: .5rem;
+
+    .expressionTags {
+      grid-row: 1 / 2;
+      grid-column: 1 / -1;
+    }
+
+    input[type="text"] {
+      grid-column: 1 / 2;
+      padding: 0 1rem;
+      width: 100%;
+    }
+
+    button {
+      grid-column: 2 / -1;
+    }
+  }
+
+  .checkboxGrid {
+    margin-top: .5rem;
+    display: grid;
+    align-items: center;
+    gap: .5rem;
+
+    label {
+      @include border(unfocus);
+      border-radius: 3px;
+      background-color: transparent;
+      padding: 1rem;
+      transition: all .1s ease-in;
+      position: relative;
+      
+      // Because the next rule isn't supported I am not using this one either
+      // &:hover {
+      //   background-color: rgba(white, .1);
+      // }
+
+      // :has is not currently supported by any browsers 😭
+      // And neither is @supports not selector() 😭
+      // &:has(:checked) {
+      //   order: -1;
+      //   background-color: rgba($cta-color, .15) !important;
+      //   box-shadow:
+      //     inset 1px 1px 0 $cta-color,
+      //     inset 1px -1px 0 $cta-color,
+      //     inset -1px 1px 0 $cta-color,
+      //     inset -1px -1px 0 $cta-color;
+      // }
+
+      // using the below because the above rule isn't supported
+      input[type="checkbox"] {
+        & + span::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: -1;
+          width: 100%;
+          height: 100%;
+          border-radius: 3px;
+          // opacity: 0;
+          background-color: transparent;
+          backdrop-filter: blur(10px);
+          transition: all .1s ease-in;
+        }
+
+        &:checked + span::after {
+          opacity: 1;
+          background-color: rgba($cta-color, .15) !important;
+          box-shadow:
+            inset 1px 1px 0 $cta-color,
+            inset 1px -1px 0 $cta-color,
+            inset -1px 1px 0 $cta-color,
+            inset -1px -1px 0 $cta-color;
+        }
+      }
+
+      &:hover input[type="checkbox"] + span::after,
+      & input[type="checkbox"]:focus-visible + span::after {
+        opacity: 1;
+        background-color: rgba(white, .15);
+      }
+    }
+
+    & > form {
+      @include border(unfocus);
+      backdrop-filter: blur(10px);
+      border-radius: 3px;
+      background-color: transparent;
+      padding: .84rem 1rem;
+      transition: all .1s ease-in;
+      display: grid;
+      grid-template-columns: min-content 1fr min-content;
+      gap: .5rem;
+
+      & > a {
+        cursor: pointer;        
+      }
+
+      i {
+        height: 2rem;
+        width: 2rem;
+        display: inline-grid;
+        place-content: center;
+      }
+
+      input[type="text"] {
+        padding: 0 1rem;
+        width: 100%;
+      }
+    }
+
+    & > a {
+      @include border(unfocus);
+      border-radius: 3px;
+      background-color: transparent;
+      padding: 1rem;
+      transition: all .1s ease-in;
+
+      i {
+        height: 2rem;
+        width: 2rem;
+        display: inline-grid;
+        place-content: center;
+
+      }
+
+      &:hover,
+      &:focus-visible {
+        background-color: rgba(white, .15);
+      }
+    }
+  }
+
+  .hidden {
+    transform: scaleY(0);
+    transform-origin: top center;
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 91%;
+    left: 1.5rem;
+    transition: all .3s ease-out;
+  }
+}
