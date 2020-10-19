@@ -1,3 +1,15 @@
+// Disable default form behavior when enter is pressed
+let surveyFrom = document.getElementById("survey-form");
+surveyFrom.onkeypress = function(keypress) {
+  // console.log(surveyFrom);
+  var key = keypress.code || keypress.key || 0;     
+  if (key === 'Enter') {
+    keypress.preventDefault();
+    // console.log('Enter key pressed');
+  }
+}
+
+// Toggle shows/hides gender fieldsets
 let toggle = document.getElementById('genderToggle');
 let genderFields = document.querySelectorAll('.genderFields');
 toggle.addEventListener("change", function () {
@@ -5,6 +17,7 @@ toggle.addEventListener("change", function () {
   console.log("Toggled gender fieldsets");
 });
 
+// Function - add class for animation on checkbox click
 const checkboxes = document.getElementsByClassName('actualcheckbox');
 function checkboxPulse() {
   for (var checkbox = 0; checkbox < checkboxes.length; checkbox++) {
@@ -28,11 +41,61 @@ function checkboxPulse() {
   }
 }
 
+// Call the function
 checkboxPulse();
 
+// Add expressions
+let addExpressionButton = document.getElementById('addExpressionButton');
+let addExpressionInput = document.getElementById('addExpressionInput');
+let expressionList = document.getElementById('expressionList');
+function addExpression() {
+  if (addExpressionInput.value == "" || addExpressionInput.value == null) {
+
+  } else {
+    const expressionID = addExpressionInput.value.replace(/\s/g, '');
+    console.log(expressionID);
+  
+    const addedExpression = document.createElement('li');
+  
+    const addedExpressionRemove = document.createElement('a');
+    addedExpressionRemove.setAttribute('href', '#');
+    const addedExpressionRemoveIcon = document.createElement('i');
+    addedExpressionRemoveIcon.setAttribute('class', 'fas fa-times');
+    addedExpressionRemoveIcon.setAttribute('title', 'Remove');
+    addedExpressionRemove.appendChild(addedExpressionRemoveIcon);
+  
+    const addedExpressionText = document.createTextNode(addExpressionInput.value);
+  
+    const addedExpressionSave = document.createElement('input');
+    addedExpressionSave.setAttribute('type', 'text');
+    addedExpressionSave.setAttribute('name', 'genderExpressions');
+    addedExpressionSave.setAttribute('value', addExpressionInput.value);
+  
+    addedExpression.appendChild(addedExpressionRemove);
+    addedExpression.appendChild(addedExpressionText);
+    addedExpression.appendChild(addedExpressionSave);
+  
+    expressionList.appendChild(addedExpression);
+    addExpressionInput.value = '';
+  }
+}
+addExpressionButton.addEventListener('click', () => {
+  addExpression();
+})
+addExpressionInput.addEventListener("keyup", function(event) {
+  if (event.code === 'Enter') {
+    addExpression();
+  }
+});
+
+
+// OLD CODE - TO BE REPLACED SO ENTER WORKS...
+// Adding another gender
 let otherGender = document.getElementById('otherGender');
 let genderList = document.getElementById('genderList');
+
 otherGender.addEventListener('click', function () {
+  // The form to add the gender
   const addGenderForm = document.createElement('form');
   addGenderForm.setAttribute('action', '');
   
@@ -68,6 +131,7 @@ otherGender.addEventListener('click', function () {
     genderList.replaceChild(this, addGenderForm);
   })
 
+  // Adding the gender element after submit
   addGenderForm.addEventListener('submit', () => {
     const genderValue = addGenderForm.getElementsByTagName("input")[0].value
     const genderID = genderValue.replace(/\s/g, '');
@@ -100,4 +164,13 @@ otherGender.addEventListener('click', function () {
   });
 });
 
+// New code WIP...
+// let addOtherGenderButton = document.getElementById('addOtherGenderButton');
+// let genderList = document.getElementById('genderList');
 
+// function addOtherGender() {
+// }
+
+// addOtherGenderButton.addEventListener('click', () => {
+//   addOtherGender();
+// })

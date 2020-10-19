@@ -165,7 +165,6 @@
     padding-top: .25rem;
     transform: scaleY(1);
     transform-origin: top center;
-    max-height: auto;
     opacity: 1;
     transition: all .3s ease-out;
     align-self: start; }
@@ -223,7 +222,8 @@
     .form .actualcheckbox:checked::before {
       position: absolute;
       left: .5rem;
-      text-align: center; }
+      text-align: center;
+      text-shadow: none; }
   .form .unpreferred:checked ~ *:not([for="unpreferred"]) {
     transform: scaleY(0);
     transform-origin: top center;
@@ -293,16 +293,53 @@
   .form .genderExpressions {
     display: grid;
     grid-template-columns: auto min-content;
+    grid-template-rows: 0 repeat(2, auto);
     gap: .5rem; }
-    .form .genderExpressions .expressionTags {
-      grid-row: 1 / 2;
+    .form .genderExpressions legend {
+      grid-row-start: 1;
       grid-column: 1 / -1; }
+    .form .genderExpressions .expressionTags {
+      grid-row: 2 / 3;
+      grid-column: 1 / -1;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .5rem; }
+      .form .genderExpressions .expressionTags li {
+        white-space: nowrap;
+        background-color: rgba(140, 0, 255, 0.15) !important;
+        box-shadow: inset 1px 1px 0 #8c00ff, inset 1px -1px 0 #8c00ff, inset -1px 1px 0 #8c00ff, inset -1px -1px 0 #8c00ff;
+        border-radius: 10rem;
+        padding: 0 1rem;
+        font-size: 1.4rem;
+        max-width: 25ch;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+        .form .genderExpressions .expressionTags li a {
+          display: inline-block;
+          color: gray;
+          transform: scale(0);
+          width: 0;
+          transition: all .2s ease-out;
+          line-height: 0; }
+          .form .genderExpressions .expressionTags li a:hover, .form .genderExpressions .expressionTags li a:focus-visible {
+            color: white; }
+        .form .genderExpressions .expressionTags li:hover a,
+        .form .genderExpressions .expressionTags li a:focus-visible {
+          width: min-content;
+          transform: scale(1);
+          margin-right: .5rem; }
+        .form .genderExpressions .expressionTags li input {
+          display: none; }
     .form .genderExpressions input[type="text"] {
       grid-column: 1 / 2;
+      grid-row: 3 / 4;
       padding: 0 1rem;
       width: 100%; }
     .form .genderExpressions button {
-      grid-column: 2 / -1; }
+      grid-column: 2 / -1;
+      grid-row: 3 / 4; }
   .form .checkboxGrid {
     margin-top: .5rem;
     display: grid;

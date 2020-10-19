@@ -70,10 +70,12 @@
         </div>
         <fieldset class="form__fieldset genderFields hidden genderExpressions">
           <legend>Gender Expression(s)</legend>
-          <div class="expressionTags">
-          </div>
-          <input class="form__textinput-input" type="text" placeholder="Expression">
-          <button class="btn--add" title="Add Expression"><i class="fas fa-plus"></i></button>
+          <ul class="expressionTags" id="expressionList">
+          </ul>
+          <input id="addExpressionInput" class="form__textinput-input" type="text" placeholder="Expression">
+          <button type="button" id="addExpressionButton" class="btn--add" title="Add Expression">
+            <i class="fas fa-plus"></i>
+          </button>
         </fieldset>
         <fieldset class="form__fieldset genderFields hidden">
           <legend>Gender(s)</legend>
