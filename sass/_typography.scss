@@ -21,7 +21,7 @@ a {
 .container {  
   text-shadow: $text-shadow;
 
-  input, textarea {
+  input, textarea, select {
     text-shadow: $text-shadow;
     font-family: inherit;
     font-size: inherit;
@@ -35,7 +35,12 @@ a {
   label:hover span,
   [type=checkbox]:focus-visible + span,
   .checkboxGrid a:focus-visible,
-  .checkboxGrid a:hover {
+  .checkboxGrid a:hover,
+  summary:focus-visible,
+  summary:hover,
+  details[open] summary,
+  select:hover,
+  select:focus-visible {
     color: white !important;
     text-decoration: none;
   }
@@ -54,9 +59,23 @@ a {
   ::placeholder,
   [type=checkbox]:not(:checked) + label,
   [type=checkbox]:not(:checked) + span,
-  .checkboxGrid a {
+  .checkboxGrid a,
+  summary,
+  select {
     color: gray;
   }
+}
+
+fieldset {
+  fieldset {
+    legend {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+select {
+  font-size: 1.2rem !important;
 }
 
 h1, h2, h3, h4, h5, h6 { font-family: 'Orbitron', sans-serif; }

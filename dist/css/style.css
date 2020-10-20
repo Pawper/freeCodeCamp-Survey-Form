@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Kodchasan:wght@400;500;600;700&family=Orbitron:wght@400;800&display=swap");
 .activated {
   animation: pulse .75s; }
@@ -99,7 +100,7 @@
 .form {
   user-select: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   color: rgba(255, 255, 255, 0.9); }
   .form label {
@@ -162,7 +163,7 @@
     border-radius: 3px;
     border: none;
     padding: 1rem;
-    padding-top: .25rem;
+    padding-top: 0;
     transform: scaleY(1);
     transform-origin: top center;
     opacity: 1;
@@ -176,6 +177,8 @@
       border: 1px solid rgba(255, 255, 255, 0.5); }
     .form__fieldset fieldset {
       margin-top: .5rem; }
+      .form__fieldset fieldset legend {
+        margin-bottom: -.25rem; }
     .form__fieldset legend {
       margin: 0 -1.2rem;
       padding-right: .5rem; }
@@ -294,10 +297,11 @@
     display: grid;
     grid-template-columns: auto min-content;
     grid-template-rows: 0 repeat(2, auto);
-    gap: .5rem; }
+    gap: 1rem; }
     .form .genderExpressions legend {
       grid-row-start: 1;
-      grid-column: 1 / -1; }
+      grid-column: 1 / -1;
+      margin-bottom: -.5rem; }
     .form .genderExpressions .expressionTags {
       grid-row: 2 / 3;
       grid-column: 1 / -1;
@@ -306,6 +310,11 @@
       flex-wrap: wrap;
       align-items: center;
       gap: .5rem; }
+      .form .genderExpressions .expressionTags:empty:before {
+        content: 'Add gender-expressive adjectives such as butch, femme, and masc.';
+        color: gray;
+        font-size: 1.2rem;
+        line-height: 1; }
       .form .genderExpressions .expressionTags li {
         white-space: nowrap;
         background-color: rgba(140, 0, 255, 0.15) !important;
@@ -374,7 +383,7 @@
       .form .checkboxGrid label input[type="checkbox"]:focus-visible + span::after {
         opacity: 1;
         background-color: rgba(255, 255, 255, 0.15); }
-    .form .checkboxGrid > form {
+    .form .checkboxGrid > div {
       border: none;
       box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset 1px -1px 0 rgba(255, 255, 255, 0.1), inset -1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(255, 255, 255, 0.1);
       transition: all .1s ease;
@@ -386,14 +395,14 @@
       display: grid;
       grid-template-columns: min-content 1fr min-content;
       gap: .5rem; }
-      .form .checkboxGrid > form > a {
+      .form .checkboxGrid > div > a {
         cursor: pointer; }
-      .form .checkboxGrid > form i {
+      .form .checkboxGrid > div i {
         height: 2rem;
         width: 2rem;
         display: inline-grid;
         place-content: center; }
-      .form .checkboxGrid > form input[type="text"] {
+      .form .checkboxGrid > div input[type="text"] {
         padding: 0 1rem;
         width: 100%; }
     .form .checkboxGrid > a {
@@ -411,6 +420,162 @@
         place-content: center; }
       .form .checkboxGrid > a:hover, .form .checkboxGrid > a:focus-visible {
         background-color: rgba(255, 255, 255, 0.15); }
+  .form .pronouns {
+    display: grid;
+    grid-template-rows: 0 auto;
+    gap: .5rem; }
+    .form .pronouns > legend {
+      grid-row-start: 1;
+      grid-column: 1 / -1;
+      margin-bottom: -.25rem; }
+    .form .pronouns .defaultPronounSets {
+      gap: .5rem;
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+      display: grid;
+      grid-template-columns: 1fr min-content; }
+      .form .pronouns .defaultPronounSets .select-wrapper {
+        position: relative; }
+        .form .pronouns .defaultPronounSets .select-wrapper select {
+          width: 100%;
+          display: block;
+          padding: 0.5rem;
+          border-radius: 3px;
+          background-color: rgba(0, 0, 0, 0.75);
+          border: none;
+          box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset 1px -1px 0 rgba(255, 255, 255, 0.1), inset -1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(255, 255, 255, 0.1);
+          transition: all .1s ease;
+          -moz-appearance: textfield;
+          appearance: none;
+          outline: none; }
+          .form .pronouns .defaultPronounSets .select-wrapper select:hover, .form .pronouns .defaultPronounSets .select-wrapper select:focus-visible {
+            border: none;
+            box-shadow: inset 2px 2px 0 white, inset 2px -2px 0 white, inset -2px 2px 0 white, inset -2px -2px 0 white;
+            outline: none;
+            background: rgba(0, 0, 0, 0.5) linear-gradient(transparent, rgba(255, 255, 255, 0.2)); }
+          .form .pronouns .defaultPronounSets .select-wrapper select[type="number"]::-webkit-inner-spin-button, .form .pronouns .defaultPronounSets .select-wrapper select[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0; }
+          .form .pronouns .defaultPronounSets .select-wrapper select[type="checkbox"] {
+            display: inline-block;
+            font-size: 1.4rem;
+            padding: 0;
+            position: relative;
+            top: .4rem;
+            height: 2rem;
+            width: 2rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -o-appearance: none;
+            appearance: none;
+            cursor: pointer;
+            border: none;
+            box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset 1px -1px 0 rgba(255, 255, 255, 0.1), inset -1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(255, 255, 255, 0.1);
+            transition: all .1s ease; }
+            .form .pronouns .defaultPronounSets .select-wrapper select[type="checkbox"]:focus {
+              outline: none; }
+            .form .pronouns .defaultPronounSets .select-wrapper select[type="checkbox"]:focus-visible, .form .pronouns .defaultPronounSets .select-wrapper select[type="checkbox"]:hover {
+              border: none;
+              box-shadow: inset 2px 2px 0 white, inset 2px -2px 0 white, inset -2px 2px 0 white, inset -2px -2px 0 white;
+              outline: none;
+              background: rgba(0, 0, 0, 0.5) linear-gradient(transparent, rgba(255, 255, 255, 0.2)); }
+          .form .pronouns .defaultPronounSets .select-wrapper select option {
+            background-color: black;
+            cursor: pointer; }
+        .form .pronouns .defaultPronounSets .select-wrapper::after {
+          content: '▼';
+          position: absolute;
+          color: gray;
+          font-size: 1.2rem;
+          top: 0;
+          right: 0;
+          width: 3rem;
+          height: 2.7rem;
+          display: grid;
+          place-content: center;
+          pointer-events: none; }
+        .form .pronouns .defaultPronounSets .select-wrapper:hover::after {
+          color: white; }
+    .form .pronouns .pronounListContainer {
+      grid-column: 1 / 2;
+      grid-row: 3 / 4;
+      display: grid;
+      gap: .5rem; }
+      .form .pronouns .pronounListContainer .pronounListSubContainer {
+        display: grid;
+        grid-template-columns: 1fr min-content;
+        gap: .5rem;
+        font-size: 1.2rem;
+        margin: 0;
+        border-radius: 5px;
+        border: none;
+        box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset 1px -1px 0 rgba(255, 255, 255, 0.1), inset -1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(255, 255, 255, 0.1);
+        transition: all .1s ease;
+        backdrop-filter: blur(5px) saturate(200%); }
+        .form .pronouns .pronounListContainer .pronounListSubContainer summary {
+          cursor: pointer;
+          padding: .5rem 1rem;
+          background: transparent;
+          transition: all .2s ease-out;
+          border-radius: 5px; }
+          .form .pronouns .pronounListContainer .pronounListSubContainer summary:focus {
+            outline: none; }
+          .form .pronouns .pronounListContainer .pronounListSubContainer summary:hover, .form .pronouns .pronounListContainer .pronounListSubContainer summary:focus-visible {
+            border: none;
+            box-shadow: inset 2px 2px 0 white, inset 2px -2px 0 white, inset -2px 2px 0 white, inset -2px -2px 0 white;
+            outline: none;
+            background: rgba(255, 255, 255, 0.15); }
+        .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags {
+          grid-row: 2 / 3;
+          grid-column: 1 / -1;
+          list-style: none;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: .5rem; }
+          .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags:empty:before {
+            content: 'No pronouns added.';
+            color: gray;
+            font-size: 1.2rem;
+            line-height: 1; }
+          .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags li {
+            white-space: nowrap;
+            background-color: rgba(140, 0, 255, 0.15) !important;
+            box-shadow: inset 1px 1px 0 #8c00ff, inset 1px -1px 0 #8c00ff, inset -1px 1px 0 #8c00ff, inset -1px -1px 0 #8c00ff;
+            border-radius: 10rem;
+            padding: 0 1rem;
+            font-size: 1.4rem;
+            max-width: 25ch;
+            overflow: hidden;
+            text-overflow: ellipsis; }
+            .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags li a {
+              display: inline-block;
+              color: gray;
+              transform: scale(0);
+              width: 0;
+              transition: all .2s ease-out;
+              line-height: 0; }
+              .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags li a:hover, .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags li a:focus-visible {
+                color: white; }
+            .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags li:hover a,
+            .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags li a:focus-visible {
+              width: min-content;
+              transform: scale(1);
+              margin-right: .5rem; }
+            .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags li input {
+              display: none; }
+        .form .pronouns .pronounListContainer .pronounListSubContainer .addPronounInput {
+          grid-column: 1 / 2;
+          grid-row: 3 / 4;
+          padding: 0 1rem;
+          width: 100%;
+          font-size: 1.4rem; }
+        .form .pronouns .pronounListContainer .pronounListSubContainer button {
+          grid-column: 2 / -1;
+          grid-row: 3 / 4; }
+  .form .form__background-info {
+    display: grid;
+    grid-template-rows: min-content auto; }
   .form .hidden {
     transform: scaleY(0);
     transform-origin: top center;
@@ -430,8 +595,7 @@
 .container {
   margin: 1rem auto;
   display: grid;
-  place-content: center;
-  max-width: 900px;
+  max-width: 850px;
   padding: 2rem;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px) saturate(200%);
@@ -475,7 +639,7 @@ a {
 
 .container {
   text-shadow: 1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black; }
-  .container input, .container textarea {
+  .container input, .container textarea, .container select {
     text-shadow: 1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
     font-family: inherit;
     font-size: inherit;
@@ -487,7 +651,12 @@ a {
   .container label:hover span,
   .container [type=checkbox]:focus-visible + span,
   .container .checkboxGrid a:focus-visible,
-  .container .checkboxGrid a:hover {
+  .container .checkboxGrid a:hover,
+  .container summary:focus-visible,
+  .container summary:hover,
+  .container details[open] summary,
+  .container select:hover,
+  .container select:focus-visible {
     color: white !important;
     text-decoration: none; }
   .container .checkboxGrid > a:focus-visible,
@@ -498,8 +667,16 @@ a {
   .container ::placeholder,
   .container [type=checkbox]:not(:checked) + label,
   .container [type=checkbox]:not(:checked) + span,
-  .container .checkboxGrid a {
+  .container .checkboxGrid a,
+  .container summary,
+  .container select {
     color: gray; }
+
+fieldset fieldset legend {
+  font-size: 1.4rem; }
+
+select {
+  font-size: 1.2rem !important; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Orbitron', sans-serif; }
