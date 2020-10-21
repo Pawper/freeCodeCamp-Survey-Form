@@ -79,6 +79,147 @@
         .btn--cta:active span::after {
           right: 50%; }
 
+.tag-box {
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  gap: .5rem;
+  font-size: 1.4rem;
+  margin: 0;
+  border-radius: 5px;
+  border: none;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset 1px -1px 0 rgba(255, 255, 255, 0.1), inset -1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(255, 255, 255, 0.1);
+  transition: all .1s ease;
+  backdrop-filter: blur(5px) saturate(200%); }
+  .tag-box__summary {
+    cursor: pointer;
+    padding: .5rem 1rem;
+    background: transparent;
+    transition: all .2s ease-out;
+    border-radius: 5px; }
+    .tag-box__summary:focus {
+      outline: none; }
+    .tag-box__summary:hover, .tag-box__summary:focus-visible {
+      border: none;
+      box-shadow: inset 2px 2px 0 white, inset 2px -2px 0 white, inset -2px 2px 0 white, inset -2px -2px 0 white;
+      outline: none;
+      background: rgba(0, 0, 0, 0.5) linear-gradient(transparent, rgba(255, 255, 255, 0.2));
+      color: white; }
+    .tag-box[open] .tag-box__summary:hover,
+    .tag-box[open] .tag-box__summary:focus-visible {
+      box-shadow: none;
+      background: linear-gradient(rgba(255, 255, 255, 0.2), transparent); }
+  .tag-box__tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    align-items: center;
+    padding: .5rem .5rem .5rem 1.5rem; }
+    .tag-box__tags:empty:before {
+      content: 'No tags added.';
+      color: gray;
+      line-height: 1; }
+  .tag-box__tag {
+    white-space: nowrap;
+    background-color: rgba(140, 0, 255, 0.15);
+    box-shadow: inset 1px 1px 0 #8c00ff, inset 1px -1px 0 #8c00ff, inset -1px 1px 0 #8c00ff, inset -1px -1px 0 #8c00ff;
+    border-radius: 10rem;
+    padding: 0 1rem;
+    max-width: 22ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    transition: all .2s ease-out; }
+    .tag-box__tag:hover .tag-box__tag-remove::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -1.5rem;
+      margin-left: -1.5rem;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%; }
+    .tag-box__tag-remove {
+      position: relative;
+      display: inline-block;
+      color: gray;
+      transform: scale(0);
+      width: 0;
+      min-width: 0;
+      min-height: 0;
+      line-height: 0;
+      border-radius: 50%;
+      border: 0 solid transparent;
+      transition: all .2s ease-out;
+      outline: none; }
+      .tag-box__tag-remove:hover, .tag-box__tag-remove:focus-visible {
+        margin-left: -1rem;
+        min-width: 3rem;
+        min-height: 3rem;
+        color: white;
+        border-radius: 50%;
+        border: 1px solid white;
+        display: inline-grid;
+        place-content: center;
+        text-decoration: none; }
+    .tag-box__tag:hover .tag-box__tag-remove, .tag-box__tag-remove:focus-visible {
+      width: min-content;
+      transform: scale(1);
+      margin-right: .5rem; }
+    .tag-box__tag-form-save {
+      display: none; }
+  .tag-box__expand-container {
+    padding: 1rem;
+    padding-top: 0;
+    margin-left: 1.25rem;
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    gap: .5rem;
+    align-items: center; }
+  .tag-box__add-input {
+    display: block;
+    padding: 0.5rem;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.75);
+    border: none;
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset 1px -1px 0 rgba(255, 255, 255, 0.1), inset -1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(255, 255, 255, 0.1);
+    transition: all .1s ease;
+    -moz-appearance: textfield;
+    width: 100%;
+    font-size: 1.6rem !important; }
+    .tag-box__add-input:hover, .tag-box__add-input:focus-visible {
+      border: none;
+      box-shadow: inset 2px 2px 0 white, inset 2px -2px 0 white, inset -2px 2px 0 white, inset -2px -2px 0 white;
+      outline: none;
+      background: rgba(0, 0, 0, 0.5) linear-gradient(transparent, rgba(255, 255, 255, 0.2)); }
+    .tag-box__add-input[type="number"]::-webkit-inner-spin-button, .tag-box__add-input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0; }
+    .tag-box__add-input[type="checkbox"] {
+      display: inline-block;
+      font-size: 1.4rem;
+      padding: 0;
+      position: relative;
+      top: .4rem;
+      height: 2rem;
+      width: 2rem;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -o-appearance: none;
+      appearance: none;
+      cursor: pointer;
+      border: none;
+      box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset 1px -1px 0 rgba(255, 255, 255, 0.1), inset -1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(255, 255, 255, 0.1);
+      transition: all .1s ease; }
+      .tag-box__add-input[type="checkbox"]:focus {
+        outline: none; }
+      .tag-box__add-input[type="checkbox"]:focus-visible, .tag-box__add-input[type="checkbox"]:hover {
+        border: none;
+        box-shadow: inset 2px 2px 0 white, inset 2px -2px 0 white, inset -2px 2px 0 white, inset -2px -2px 0 white;
+        outline: none;
+        background: rgba(0, 0, 0, 0.5) linear-gradient(transparent, rgba(255, 255, 255, 0.2)); }
+
 .activated {
   animation: pulse .75s; }
 
@@ -100,10 +241,10 @@
 .form {
   user-select: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
   gap: 1rem;
   color: rgba(255, 255, 255, 0.9); }
-  .form label {
+  .form label, .form a {
     cursor: pointer; }
   .form__textinput {
     display: flex;
@@ -157,6 +298,9 @@
       .form__textinput-input:focus + label, .form__textinput-input:hover + label {
         font-weight: 700;
         font-size: 1.7rem; }
+      .form__textinput-input:not(:placeholder-shown):not([placeholder="Your gender"]) {
+        background: rgba(140, 0, 255, 0.15);
+        box-shadow: inset 1px 1px 0 #8c00ff, inset 1px -1px 0 #8c00ff, inset -1px 1px 0 #8c00ff, inset -1px -1px 0 #8c00ff; }
   .form__fieldset {
     display: block;
     padding: 0.5rem;
@@ -168,7 +312,8 @@
     transform-origin: top center;
     opacity: 1;
     transition: all .3s ease-out;
-    align-self: start; }
+    align-self: start;
+    position: relative; }
     .form__fieldset:not(fieldset) {
       box-shadow: inset 1px 1px 0 white, inset 1px -1px 0 white, inset -1px 1px 0 white, inset -1px -1px 0 white; }
     .form__fieldset:is(fieldset) {
@@ -227,7 +372,22 @@
       left: .5rem;
       text-align: center;
       text-shadow: none; }
-  .form .unpreferred:checked ~ *:not([for="unpreferred"]) {
+  .form .standalone-checkbox:checked {
+    margin-left: 1rem; }
+    .form .standalone-checkbox:checked + label::before {
+      content: '';
+      width: 92.25%;
+      height: 2.8rem;
+      position: absolute;
+      left: 50%;
+      margin-left: -46%;
+      border-radius: .5rem;
+      background-color: rgba(140, 0, 255, 0.15);
+      backdrop-filter: blur(5px) saturate(200%);
+      box-shadow: inset 1px 1px 0 #8c00ff, inset 1px -1px 0 #8c00ff, inset -1px 1px 0 #8c00ff, inset -1px -1px 0 #8c00ff;
+      z-index: -1; }
+  .form .unpreferred:checked ~ *:not([for="unpreferred"]),
+  .form .any-all:checked ~ *:not([for="any-all"]) {
     transform: scaleY(0);
     transform-origin: top center;
     max-height: 0;
@@ -293,62 +453,6 @@
       background: rgba(0, 0, 0, 0.5) linear-gradient(transparent, rgba(255, 255, 255, 0.2)); }
     .form__toggle-input:focus-visible + .form__toggle-label::after, .form__toggle-input:hover + .form__toggle-label::after {
       background-color: white; }
-  .form .genderExpressions {
-    display: grid;
-    grid-template-columns: auto min-content;
-    grid-template-rows: 0 repeat(2, auto);
-    gap: 1rem; }
-    .form .genderExpressions legend {
-      grid-row-start: 1;
-      grid-column: 1 / -1;
-      margin-bottom: -.5rem; }
-    .form .genderExpressions .expressionTags {
-      grid-row: 2 / 3;
-      grid-column: 1 / -1;
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: .5rem; }
-      .form .genderExpressions .expressionTags:empty:before {
-        content: 'Add gender-expressive adjectives such as butch, femme, and masc.';
-        color: gray;
-        font-size: 1.2rem;
-        line-height: 1; }
-      .form .genderExpressions .expressionTags li {
-        white-space: nowrap;
-        background-color: rgba(140, 0, 255, 0.15) !important;
-        box-shadow: inset 1px 1px 0 #8c00ff, inset 1px -1px 0 #8c00ff, inset -1px 1px 0 #8c00ff, inset -1px -1px 0 #8c00ff;
-        border-radius: 10rem;
-        padding: 0 1rem;
-        font-size: 1.4rem;
-        max-width: 25ch;
-        overflow: hidden;
-        text-overflow: ellipsis; }
-        .form .genderExpressions .expressionTags li a {
-          display: inline-block;
-          color: gray;
-          transform: scale(0);
-          width: 0;
-          transition: all .2s ease-out;
-          line-height: 0; }
-          .form .genderExpressions .expressionTags li a:hover, .form .genderExpressions .expressionTags li a:focus-visible {
-            color: white; }
-        .form .genderExpressions .expressionTags li:hover a,
-        .form .genderExpressions .expressionTags li a:focus-visible {
-          width: min-content;
-          transform: scale(1);
-          margin-right: .5rem; }
-        .form .genderExpressions .expressionTags li input {
-          display: none; }
-    .form .genderExpressions input[type="text"] {
-      grid-column: 1 / 2;
-      grid-row: 3 / 4;
-      padding: 0 1rem;
-      width: 100%; }
-    .form .genderExpressions button {
-      grid-column: 2 / -1;
-      grid-row: 3 / 4; }
   .form .checkboxGrid {
     margin-top: .5rem;
     display: grid;
@@ -428,61 +532,61 @@
       grid-row-start: 1;
       grid-column: 1 / -1;
       margin-bottom: -.25rem; }
-    .form .pronouns .defaultPronounSets {
+    .form .pronouns .add-from-set {
       gap: .5rem;
       grid-column: 1 / 2;
       grid-row: 2 / 3;
       display: grid;
       grid-template-columns: 1fr min-content; }
-      .form .pronouns .defaultPronounSets .select-wrapper {
-        position: relative; }
-        .form .pronouns .defaultPronounSets .select-wrapper select {
-          width: 100%;
-          display: block;
-          padding: 0.5rem;
-          border-radius: 3px;
-          background-color: rgba(0, 0, 0, 0.75);
+      .form .pronouns .add-from-set__select {
+        width: 100%;
+        display: block;
+        padding: 0.5rem;
+        border-radius: 3px;
+        background-color: rgba(0, 0, 0, 0.75);
+        border: none;
+        box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset 1px -1px 0 rgba(255, 255, 255, 0.1), inset -1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(255, 255, 255, 0.1);
+        transition: all .1s ease;
+        -moz-appearance: textfield;
+        appearance: none;
+        outline: none;
+        cursor: pointer; }
+        .form .pronouns .add-from-set__select:hover, .form .pronouns .add-from-set__select:focus-visible {
+          border: none;
+          box-shadow: inset 2px 2px 0 white, inset 2px -2px 0 white, inset -2px 2px 0 white, inset -2px -2px 0 white;
+          outline: none;
+          background: rgba(0, 0, 0, 0.5) linear-gradient(transparent, rgba(255, 255, 255, 0.2)); }
+        .form .pronouns .add-from-set__select[type="number"]::-webkit-inner-spin-button, .form .pronouns .add-from-set__select[type="number"]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0; }
+        .form .pronouns .add-from-set__select[type="checkbox"] {
+          display: inline-block;
+          font-size: 1.4rem;
+          padding: 0;
+          position: relative;
+          top: .4rem;
+          height: 2rem;
+          width: 2rem;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          -o-appearance: none;
+          appearance: none;
+          cursor: pointer;
           border: none;
           box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset 1px -1px 0 rgba(255, 255, 255, 0.1), inset -1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(255, 255, 255, 0.1);
-          transition: all .1s ease;
-          -moz-appearance: textfield;
-          appearance: none;
-          outline: none; }
-          .form .pronouns .defaultPronounSets .select-wrapper select:hover, .form .pronouns .defaultPronounSets .select-wrapper select:focus-visible {
+          transition: all .1s ease; }
+          .form .pronouns .add-from-set__select[type="checkbox"]:focus {
+            outline: none; }
+          .form .pronouns .add-from-set__select[type="checkbox"]:focus-visible, .form .pronouns .add-from-set__select[type="checkbox"]:hover {
             border: none;
             box-shadow: inset 2px 2px 0 white, inset 2px -2px 0 white, inset -2px 2px 0 white, inset -2px -2px 0 white;
             outline: none;
             background: rgba(0, 0, 0, 0.5) linear-gradient(transparent, rgba(255, 255, 255, 0.2)); }
-          .form .pronouns .defaultPronounSets .select-wrapper select[type="number"]::-webkit-inner-spin-button, .form .pronouns .defaultPronounSets .select-wrapper select[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0; }
-          .form .pronouns .defaultPronounSets .select-wrapper select[type="checkbox"] {
-            display: inline-block;
-            font-size: 1.4rem;
-            padding: 0;
-            position: relative;
-            top: .4rem;
-            height: 2rem;
-            width: 2rem;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            -o-appearance: none;
-            appearance: none;
-            cursor: pointer;
-            border: none;
-            box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset 1px -1px 0 rgba(255, 255, 255, 0.1), inset -1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(255, 255, 255, 0.1);
-            transition: all .1s ease; }
-            .form .pronouns .defaultPronounSets .select-wrapper select[type="checkbox"]:focus {
-              outline: none; }
-            .form .pronouns .defaultPronounSets .select-wrapper select[type="checkbox"]:focus-visible, .form .pronouns .defaultPronounSets .select-wrapper select[type="checkbox"]:hover {
-              border: none;
-              box-shadow: inset 2px 2px 0 white, inset 2px -2px 0 white, inset -2px 2px 0 white, inset -2px -2px 0 white;
-              outline: none;
-              background: rgba(0, 0, 0, 0.5) linear-gradient(transparent, rgba(255, 255, 255, 0.2)); }
-          .form .pronouns .defaultPronounSets .select-wrapper select option {
-            background-color: black;
-            cursor: pointer; }
-        .form .pronouns .defaultPronounSets .select-wrapper::after {
+        .form .pronouns .add-from-set__select option {
+          background-color: black; }
+      .form .pronouns .add-from-set .select-wrapper {
+        position: relative; }
+        .form .pronouns .add-from-set .select-wrapper::after {
           content: '▼';
           position: absolute;
           color: gray;
@@ -494,85 +598,16 @@
           display: grid;
           place-content: center;
           pointer-events: none; }
-        .form .pronouns .defaultPronounSets .select-wrapper:hover::after {
+        .form .pronouns .add-from-set .select-wrapper:hover::after {
           color: white; }
-    .form .pronouns .pronounListContainer {
+    .form .pronouns .pronouns-container {
       grid-column: 1 / 2;
       grid-row: 3 / 4;
       display: grid;
       gap: .5rem; }
-      .form .pronouns .pronounListContainer .pronounListSubContainer {
-        display: grid;
-        grid-template-columns: 1fr min-content;
-        gap: .5rem;
-        font-size: 1.2rem;
-        margin: 0;
-        border-radius: 5px;
-        border: none;
-        box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset 1px -1px 0 rgba(255, 255, 255, 0.1), inset -1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(255, 255, 255, 0.1);
-        transition: all .1s ease;
-        backdrop-filter: blur(5px) saturate(200%); }
-        .form .pronouns .pronounListContainer .pronounListSubContainer summary {
-          cursor: pointer;
-          padding: .5rem 1rem;
-          background: transparent;
-          transition: all .2s ease-out;
-          border-radius: 5px; }
-          .form .pronouns .pronounListContainer .pronounListSubContainer summary:focus {
-            outline: none; }
-          .form .pronouns .pronounListContainer .pronounListSubContainer summary:hover, .form .pronouns .pronounListContainer .pronounListSubContainer summary:focus-visible {
-            border: none;
-            box-shadow: inset 2px 2px 0 white, inset 2px -2px 0 white, inset -2px 2px 0 white, inset -2px -2px 0 white;
-            outline: none;
-            background: rgba(255, 255, 255, 0.15); }
-        .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags {
-          grid-row: 2 / 3;
-          grid-column: 1 / -1;
-          list-style: none;
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          gap: .5rem; }
-          .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags:empty:before {
-            content: 'No pronouns added.';
-            color: gray;
-            font-size: 1.2rem;
-            line-height: 1; }
-          .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags li {
-            white-space: nowrap;
-            background-color: rgba(140, 0, 255, 0.15) !important;
-            box-shadow: inset 1px 1px 0 #8c00ff, inset 1px -1px 0 #8c00ff, inset -1px 1px 0 #8c00ff, inset -1px -1px 0 #8c00ff;
-            border-radius: 10rem;
-            padding: 0 1rem;
-            font-size: 1.4rem;
-            max-width: 25ch;
-            overflow: hidden;
-            text-overflow: ellipsis; }
-            .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags li a {
-              display: inline-block;
-              color: gray;
-              transform: scale(0);
-              width: 0;
-              transition: all .2s ease-out;
-              line-height: 0; }
-              .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags li a:hover, .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags li a:focus-visible {
-                color: white; }
-            .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags li:hover a,
-            .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags li a:focus-visible {
-              width: min-content;
-              transform: scale(1);
-              margin-right: .5rem; }
-            .form .pronouns .pronounListContainer .pronounListSubContainer .pronounTags li input {
-              display: none; }
-        .form .pronouns .pronounListContainer .pronounListSubContainer .addPronounInput {
-          grid-column: 1 / 2;
-          grid-row: 3 / 4;
-          padding: 0 1rem;
-          width: 100%;
-          font-size: 1.4rem; }
-        .form .pronouns .pronounListContainer .pronounListSubContainer button {
-          grid-column: 2 / -1;
-          grid-row: 3 / 4; }
+    .form .pronouns .ask-me {
+      grid-column: 1 / -1;
+      grid-row: 4 / 5; }
   .form .form__background-info {
     display: grid;
     grid-template-rows: min-content auto; }
@@ -644,6 +679,7 @@ a {
     font-family: inherit;
     font-size: inherit;
     color: inherit; }
+  .container [type=checkbox]:hover + label,
   .container [type=checkbox]:focus-visible + label,
   .container label:hover,
   .container label:focus-visible,
@@ -652,9 +688,6 @@ a {
   .container [type=checkbox]:focus-visible + span,
   .container .checkboxGrid a:focus-visible,
   .container .checkboxGrid a:hover,
-  .container summary:focus-visible,
-  .container summary:hover,
-  .container details[open] summary,
   .container select:hover,
   .container select:focus-visible {
     color: white !important;
@@ -668,7 +701,6 @@ a {
   .container [type=checkbox]:not(:checked) + label,
   .container [type=checkbox]:not(:checked) + span,
   .container .checkboxGrid a,
-  .container summary,
   .container select {
     color: gray; }
 
@@ -676,7 +708,7 @@ fieldset fieldset legend {
   font-size: 1.4rem; }
 
 select {
-  font-size: 1.2rem !important; }
+  font-size: 1.4rem !important; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Orbitron', sans-serif; }

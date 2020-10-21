@@ -28,6 +28,7 @@ a {
     color: inherit;
   }
 
+  [type=checkbox]:hover + label,
   [type=checkbox]:focus-visible + label,
   label:hover,
   label:focus-visible,
@@ -36,9 +37,6 @@ a {
   [type=checkbox]:focus-visible + span,
   .checkboxGrid a:focus-visible,
   .checkboxGrid a:hover,
-  summary:focus-visible,
-  summary:hover,
-  details[open] summary,
   select:hover,
   select:focus-visible {
     color: white !important;
@@ -60,7 +58,6 @@ a {
   [type=checkbox]:not(:checked) + label,
   [type=checkbox]:not(:checked) + span,
   .checkboxGrid a,
-  summary,
   select {
     color: gray;
   }
@@ -75,7 +72,7 @@ fieldset {
 }
 
 select {
-  font-size: 1.2rem !important;
+  font-size: 1.4rem !important;
 }
 
 h1, h2, h3, h4, h5, h6 { font-family: 'Orbitron', sans-serif; }

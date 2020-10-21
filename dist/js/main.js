@@ -43,63 +43,139 @@ function checkboxPulse() {
 // Call the above function
 checkboxPulse();
 
-// Function to add expression
-let addExpressionButton = document.getElementById('addExpressionButton');
-let addExpressionInput = document.getElementById('addExpressionInput');
-let expressionList = document.getElementById('expressionList');
-function addExpression() {
-  // Check if field is empty - if so nothing happens
-  if (addExpressionInput.value == "" || addExpressionInput.value == null) {
-    console.log('Expression input is empty');
-  } else {
-    const expressionID = addExpressionInput.value.replace(/\s/g, '');
+// Populate pronoun set dropdown
+const pronounSets = [];
+let pronounSelect = document.getElementById('dropdown');
+fetch('./pronouns.tab')
+  .then(response => response.text())
+  .then(text => {
+    let lines = text.split('\n');
+    lines.forEach(function(line) {
+      pronounSet = line.replaceAll('\t', ' / ');
+      pronounSets.push(pronounSet);
+    });
+    pronounSets.pop();
+    for(pronounSet in pronounSets) {
+      pronounSelect.options[pronounSelect.options.length] = new Option(pronounSets[pronounSet], pronounSet);
+    }
+  });
 
-    // Create expression element & text node, set attributes  
-    const addedExpression = document.createElement('li');
+// Function to add a tag
+  function addTag(tagValue, tagListID) {
+    if (tagValue == "" || tagValue == null || tagValue == 'Add from set...') {
+      console.log('Tag input is empty');
+    } else if (document.getElementById(tagListID).querySelector('[value="' + tagValue + '"') !== null) {
+      console.log('Tag exists')
+    } else {
+      console.log("Function received " + tagValue);
+      console.log("Tag list:");
+      let tagList = document.getElementById(tagListID);
+      console.log(tagList);
+
+      // Tag list name
+      let tagListName = tagList.parentElement.childNodes[0].nodeValue;
+
+      // Create tag element & text node, set attributes  
+      let tag = document.createElement('li');
+        tag.setAttribute('class', 'tag-box__tag');
+    
+      let tagRemove = document.createElement('a');
+        tagRemove.setAttribute('class','tag-box__tag-remove');
+        tagRemove.setAttribute('title','Remove "' + tagValue + '" from ' + tagListName);
+      let tagRemoveIcon = document.createElement('i');
+        tagRemoveIcon.setAttribute('class', 'fas fa-times');
+        tagRemoveIcon.setAttribute('title', 'Remove');
+        
+      let tagText = document.createTextNode(tagValue);
+        
+      let tagSave = document.createElement('input');
+        tagSave.setAttribute('type', 'text');
+        tagSave.setAttribute('class', 'tag-box__tag-form-save')
+        tagSave.setAttribute('name', tagListName);
+        tagSave.setAttribute('value', tagValue);
+        
+      // Append children to complete total element for tag
+      tagRemove.appendChild(tagRemoveIcon);
+      tag.appendChild(tagRemove);
+      tag.appendChild(tagText);
+      tag.appendChild(tagSave);
+    
+      tagList.appendChild(tag);
   
-    const addedExpressionRemove = document.createElement('a');
-      addedExpressionRemove.setAttribute('href', '#');
-    const addedExpressionRemoveIcon = document.createElement('i');
-      addedExpressionRemoveIcon.setAttribute('class', 'fas fa-times removeExpression');
-      addedExpressionRemoveIcon.setAttribute('title', 'Remove');
-      
-    const addedExpressionText = document.createTextNode(addExpressionInput.value);
-      
-    const addedExpressionSave = document.createElement('input');
-      addedExpressionSave.setAttribute('type', 'text');
-      addedExpressionSave.setAttribute('name', 'genderExpressions');
-      addedExpressionSave.setAttribute('value', addExpressionInput.value);
-      
-    // Append children to complete total element for expression
-    addedExpressionRemove.appendChild(addedExpressionRemoveIcon);
-    addedExpression.appendChild(addedExpressionRemove);
-    addedExpression.appendChild(addedExpressionText);
-    addedExpression.appendChild(addedExpressionSave);
+      console.log('Added ' + tagSave.value + ':');
+      console.log(tag);
   
-    expressionList.appendChild(addedExpression);
-    addExpressionInput.value = '';
+      // Remove click
+      tagRemove.addEventListener('click', () => {
+        console.log('Removed ' + tagSave.value + ':');
+        console.log(tag);
+        tag.parentElement.removeChild(tag);
+      });
 
-    console.log('Added ' + addedExpressionSave.value + ':');
-    console.log(addedExpression);
+    }
+  }
 
-    // Remove click
-    addedExpressionRemove.addEventListener('click', () => {
-      console.log('Removed ' + addedExpressionSave.value + ':');
-      console.log(addedExpression);
-      addedExpression.parentElement.removeChild(addedExpression);
+// Create array of pronoun list IDs
+const tagListIDs = [];
+function createPronounSectionIDList() {
+  const tagLists = document.getElementsByClassName('pronouns-container')[0].getElementsByClassName('tag-box__tags');
+  Object.keys(tagLists).forEach(function (tagList) {
+    let id = tagLists[tagList].id;
+    tagListIDs.push(id);
+  });
+}
+createPronounSectionIDList();
+
+// Add pronoun set
+let pronounSetAddBtn = document.getElementsByClassName('add-from-set__add-btn')[0];
+let selectPronounSet = document.getElementsByClassName('add-from-set__select')[0];
+pronounSetAddBtn.addEventListener("click", function() {
+  let pronounSetText = selectPronounSet.options[selectPronounSet.selectedIndex].text;
+  console.log('Clicked add button to add tags ' + pronounSetText + ":");
+
+  let tagValues = pronounSetText.split(' / ');
+
+  let pronounsObject = tagListIDs.reduce((object, value, index) => (object[value] = tagValues[index], object), {});
+  console.log(pronounsObject);
+  new Map(Object.entries(pronounsObject)).forEach(addTag);
+});
+
+// Function to pass tagList/tagValue to addTag() when pressing enter in input
+  const addTagInputs = document.getElementsByClassName('tag-box__add-input');
+  function addTagPressEnter(addTagInput) {
+    addTagInput.addEventListener("keyup", function(event) {
+      if (event.code === 'Enter') {
+        let tagListID = this.parentNode.parentNode.getElementsByClassName('tag-box__summary')[0].getElementsByClassName('tag-box__tags')[0].id;
+        let tagValue = this.value;
+        console.log('Enter pressed to add tag ' + tagValue + ":");
+        addTag(tagValue, tagListID);
+        this.value = '';
+      }
     });
   }
-}
-addExpressionButton.addEventListener('click', () => {
-  console.log('Clicked add button to add expression;');
-  addExpression();
-});
-addExpressionInput.addEventListener("keyup", function(event) {
-  if (event.code === 'Enter') {
-    console.log('Enter pressed in add expression input;');
-    addExpression();
+  
+  // Loop through tags & call addTagPressEnter()
+    Object.keys(addTagInputs).forEach(function (addTagInput) {
+      addTagPressEnter(addTagInputs[addTagInput]);
+    });
+
+// Function to pass tagList/tagInput to addTag() when clicking add button
+  const addTagButtons = document.getElementsByClassName('tag-box__add-btn');
+  function addTagButtonClick(addTagButton) {
+    addTagButton.addEventListener("click", function() {
+      let tagListID = this.parentNode.parentNode.getElementsByClassName('tag-box__summary')[0].getElementsByClassName('tag-box__tags')[0].id;
+      let tagInput = this.parentNode.getElementsByClassName('tag-box__add-input')[0];
+      let tagValue = tagInput.value;
+      console.log('Clicked add button to add tag ' + tagValue + ":");
+      addTag(tagValue, tagListID);
+      tagInput.value = '';
+    });
   }
-});
+
+  // Loop through tags & call addTagButtonClick()
+    Object.keys(addTagButtons).forEach(function (addTagButton) {
+      addTagButtonClick(addTagButtons[addTagButton]);
+    });
 
 // Function to add gender
 let addOtherGenderButton = document.getElementById('addOtherGenderButton');

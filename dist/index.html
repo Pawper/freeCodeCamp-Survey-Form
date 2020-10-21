@@ -58,7 +58,7 @@
       <!-- User Story #14: Inside the form element, I can select several fields from a series of checkboxes, each of which must have a value attribute. -->
       <fieldset class="form__fieldset">
         <legend>Gender Status</legend>
-        <input type="checkbox" id="unpreferred" name="gender-sharing" value="unpreferred" class="actualcheckbox unpreferred">
+        <input type="checkbox" id="unpreferred" name="gender-sharing" value="unpreferred" class="actualcheckbox unpreferred standalone-checkbox">
         <label for="unpreferred">Prefer not to say</label>
         <div class="form__toggle">
             <input id="genderToggle" type="checkbox" class="form__toggle-input" name="gender-status" value="gendered">
@@ -66,14 +66,15 @@
             <label for="genderToggle" class="toggleLeft">Agendered</label>
             <label for="genderToggle" class="toggleRight">Gendered</label>
         </div>
-        <fieldset class="form__fieldset genderFields hidden genderExpressions">
-          <legend>Gender Expression(s)</legend>
-          <ul class="expressionTags" id="expressionList"></ul>
-          <input id="addExpressionInput" class="form__textinput-input" type="text" placeholder="Expression">
-          <button type="button" id="addExpressionButton" class="btn--add" title="Add Expression">
-            <i class="fas fa-plus"></i>
-          </button>
-        </fieldset>
+        <details class="tag-box genderFields hidden">
+          <summary class="tag-box__summary">Gender Expression(s)<ul class="tag-box__tags" id="gender-expresions"></ul></summary>
+          <div class="tag-box__expand-container">
+            <input class="tag-box__add-input" type="text" placeholder="femme, butch, masc">
+            <button type="button" class="btn--add tag-box__add-btn" title="Add Pronoun">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </details>
         <fieldset class="form__fieldset genderFields hidden">
           <legend>Gender(s)</legend>
           <div class="checkboxGrid" id="genderList">
@@ -97,72 +98,81 @@
               <input type="checkbox" id="man" class="actualcheckbox" name="gender" value="man">
               <span>Man</span>
             </label>
-            <a href="#" id="addOtherGenderButton">
+            <a id="addOtherGenderButton">
               <i class="fas fa-plus"></i>
               <span>Other</span>
             </a>
           </div>
         </fieldset>
       </fieldset>
-      <fieldset class="form__fieldset pronouns">
+      <fieldset class="form__fieldset">
         <legend>Pronouns</legend>
+        <input type="checkbox" id="any-all" name="any-all" value="yes" class="actualcheckbox any-all standalone-checkbox">
+        <label for="any-all">Any/All</label>
         <!-- User Story #12: Inside the form element, I can select an option from a dropdown that has a corresponding id="dropdown". -->
-        <div class="defaultPronounSets">
-          <!-- User Story #13: Inside the form element, I can select a field from one or more groups of radio buttons. Each group should be grouped using the name attribute. -->
-          <div class="select-wrapper">
-            <select id="dropdown" class="defaultPronounSetSelect" placeholder="">
-              <option disabled selected>Add from set...</option>
-              <option>they / them / their / theirs / themself</option>
-              <option>she / her / her / hers / herself</option>
-              <option>he / him / his / his / himself</option>
-              <option>it / it / its / its / itself</option>
-            </select>
+        <div class="pronouns">
+          <div class="add-from-set">
+            <!-- User Story #13: Inside the form element, I can select a field from one or more groups of radio buttons. Each group should be grouped using the name attribute. -->
+            <div class="select-wrapper">
+              <select id="dropdown" class="add-from-set__select" title="Add pronouns from set">
+                <option disabled selected>Add from set...</option>
+              </select>
+            </div>
+            <button type="button" class="btn--add add-from-set__add-btn" title="Add pronoun set">
+              <i class="fas fa-plus"></i>
+            </button>
           </div>
-          <button type="button" id="addPronounSetButton" class="btn--add" title="Add Pronouns">
-            <i class="fas fa-plus"></i>
-          </button>
-        </div>
-        <div class="pronounListContainer">
-          <details class="pronounListSubContainer">
-            <summary>Subject Pronoun(s)</summary>
-            <ul class="pronounTags"></ul>
-            <input class="form__textinput-input addPronounInput" type="text" placeholder="they, she, he, it">
-            <button type="button" class="btn--add" title="Add Pronouns">
-              <i class="fas fa-plus"></i>
-            </button>
-          </details>
-          <details class="pronounListSubContainer">
-            <summary>Object Pronoun(s)</summary>
-            <ul class="pronounTags"></ul>
-            <input class="form__textinput-input addPronounInput" type="text" placeholder="them, her, him, it">
-            <button type="button" class="btn--add" title="Add Pronouns">
-              <i class="fas fa-plus"></i>
-            </button>
-          </details>
-          <details class="pronounListSubContainer">
-            <summary>Possessive Pronoun(s)</summary>
-            <ul class="pronounTags"></ul>
-            <input class="form__textinput-input addPronounInput" type="text" placeholder="their, her, his, its">
-            <button type="button" class="btn--add" title="Add Pronouns">
-              <i class="fas fa-plus"></i>
-            </button>
-          </details>
-          <details class="pronounListSubContainer">
-            <summary>Possessive Determiner(s)</summary>
-            <ul class="pronounTags"></ul>
-            <input class="form__textinput-input addPronounInput" type="text" placeholder="theirs, hers, his, its">
-            <button type="button" class="btn--add" title="Add Pronouns">
-              <i class="fas fa-plus"></i>
-            </button>
-          </details>
-          <details class="pronounListSubContainer">
-            <summary>Reflexive Pronouns(s)</summary>
-            <ul class="pronounTags"></ul>
-            <input class="form__textinput-input addPronounInput" type="text" placeholder="themself, herself, himself, itself">
-            <button type="button" class="btn--add" title="Add Pronouns">
-              <i class="fas fa-plus"></i>
-            </button>
-          </details>
+          <div class="pronouns-container">
+            <details class="tag-box">
+              <summary class="tag-box__summary">Subject Pronoun(s)<ul class="tag-box__tags" id="subject-pronouns"></ul></summary>
+              <div class="tag-box__expand-container">
+                <input class="tag-box__add-input" type="text" placeholder="they, she, he">
+                <button type="button" class="btn--add tag-box__add-btn" title="Add Pronoun">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </details>
+            <details class="tag-box">
+              <summary class="tag-box__summary">Object Pronoun(s)<ul class="tag-box__tags" id="object-pronouns"></ul></summary>
+              <div class="tag-box__expand-container">
+                <input class="tag-box__add-input" type="text" placeholder="them, her, him">
+                <button type="button" class="btn--add tag-box__add-btn" title="Add Pronoun">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </details>
+            <details class="tag-box">
+              <summary class="tag-box__summary">Possessive Pronoun(s)<ul class="tag-box__tags" id="possessive-pronouns"></ul></summary>
+              <div class="tag-box__expand-container">
+                <input class="tag-box__add-input" type="text" placeholder="their, her, his">
+                <button type="button" class="btn--add tag-box__add-btn" title="Add Pronoun">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </details>
+            <details class="tag-box">
+              <summary class="tag-box__summary">Possessive Determiner(s)<ul class="tag-box__tags" id="possessive-determiners"></ul></summary>
+              <div class="tag-box__expand-container">
+                <input class="tag-box__add-input" type="text" placeholder="theirs, hers, his">
+                <button type="button" class="btn--add tag-box__add-btn" title="Add Pronoun">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </details>
+            <details class="tag-box">
+            <summary class="tag-box__summary">Reflexive Pronoun(s)<ul class="tag-box__tags" id="reflexive-pronouns"></ul></summary>
+            <div class="tag-box__expand-container">
+              <input class="tag-box__add-input" type="text" placeholder="themself, herself, himself">
+              <button type="button" class="btn--add tag-box__add-btn" title="Add Pronoun">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+            </details>
+          </div>
+          <div class="ask-me">
+            <input type="checkbox" id="ask-me" name="ask-me" value="yes" class="actualcheckbox standalone-checkbox">
+            <label for="ask-me">Ask me often</label>
+          </div>
         </div>
       </fieldset>
       <div class="form__background-info">

@@ -3,11 +3,11 @@
 .form {
   user-select: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
   gap: 1rem;
   color: rgba(white, 0.9);
 
-  & label {
+  & label, & a {
     cursor: pointer;
   }
 
@@ -32,6 +32,15 @@
           font-size: 1.7rem;
         }
       }
+
+      &:not(:placeholder-shown):not([placeholder="Your gender"]) {
+        background: rgba($cta-color, .15);
+        box-shadow:
+          inset 1px 1px 0 $cta-color,
+          inset 1px -1px 0 $cta-color,
+          inset -1px 1px 0 $cta-color,
+          inset -1px -1px 0 $cta-color;
+      }
     }
   }
 
@@ -43,6 +52,7 @@
     opacity: 1;
     transition: all .3s ease-out;
     align-self: start;
+    position: relative;
     
     fieldset {
       margin-top: .5rem;
@@ -71,7 +81,30 @@
     }
   }
 
-  .unpreferred:checked ~ *:not([for="unpreferred"]) {
+  .standalone-checkbox:checked {
+    margin-left: 1rem;
+
+    & + label::before {
+      content: '';
+      width: 92.25%;
+      height: 2.8rem;
+      position: absolute;
+      left: 50%;
+      margin-left: -46%;
+      border-radius: .5rem;
+      background-color: rgba($cta-color, .15);
+      backdrop-filter: blur(5px) saturate(200%);
+      box-shadow:
+        inset 1px 1px 0 $cta-color,
+        inset 1px -1px 0 $cta-color,
+        inset -1px 1px 0 $cta-color,
+        inset -1px -1px 0 $cta-color;
+        z-index: -1;
+    }
+  }
+
+  .unpreferred:checked ~ *:not([for="unpreferred"]),
+  .any-all:checked ~ *:not([for="any-all"]) {
     transform: scaleY(0);
     transform-origin: top center;
     max-height: 0;
@@ -152,90 +185,7 @@
       background-color: white;
     }
   }
-
-  .genderExpressions {
-    display: grid;
-    grid-template-columns: auto min-content;
-    grid-template-rows: 0 repeat(2, auto);
-    gap: 1rem;
-
-    legend {
-      grid-row-start: 1;
-      grid-column: 1 / -1;
-      margin-bottom: -.5rem;
-    }
-
-    .expressionTags {
-      grid-row: 2 / 3;
-      grid-column: 1 / -1;
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: .5rem;
-
-      &:empty:before {
-        content: 'Add gender-expressive adjectives such as butch, femme, and masc.';
-        color: gray;
-        font-size: 1.2rem;
-        line-height: 1;
-      }
-      
-      li {
-        white-space: nowrap;
-        background-color: rgba($cta-color, .15) !important;
-        box-shadow:
-          inset 1px 1px 0 $cta-color,
-          inset 1px -1px 0 $cta-color,
-          inset -1px 1px 0 $cta-color,
-          inset -1px -1px 0 $cta-color;
-        border-radius: 10rem;
-        padding: 0 1rem;
-        font-size: 1.4rem;
-        max-width: 25ch;
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        a {
-          display: inline-block;
-          color: gray;
-          transform: scale(0);
-          width: 0;
-          transition: all .2s ease-out;
-          line-height: 0;
-          
-          &:hover,
-          &:focus-visible {
-            color: white;
-          }
-        }
-        
-        &:hover a,
-        a:focus-visible {
-          width: min-content;
-          transform: scale(1);
-          margin-right: .5rem;
-        }
-
-        input {
-          display: none;
-        }
-      }
-    }
-
-    input[type="text"] {
-      grid-column: 1 / 2;
-      grid-row: 3 / 4;
-      padding: 0 1rem;
-      width: 100%;
-    }
-
-    button {
-      grid-column: 2 / -1;
-      grid-row: 3 / 4;
-    }
-  }
-
+  
   .checkboxGrid {
     margin-top: .5rem;
     display: grid;
@@ -363,28 +313,27 @@
       margin-bottom: -.25rem;
     }
 
-    .defaultPronounSets {
+    .add-from-set {
       gap: .5rem;
       grid-column: 1 / 2;
       grid-row: 2 / 3;
       display: grid;
       grid-template-columns: 1fr min-content;
 
+      &__select {
+        width: 100%;
+        @include box(input);
+        appearance: none;
+        outline: none;
+        cursor: pointer;
+
+        option {
+          background-color: black;
+        }
+      }
+
       .select-wrapper {
         position: relative;
-
-
-        select {
-          width: 100%;
-          @include box(input);
-          appearance: none;
-          outline: none;
-
-          option {
-            background-color: black;
-            cursor: pointer;
-          }
-        }
 
         &::after {
           content: '▼';
@@ -406,111 +355,16 @@
       }
     }
 
-    .pronounListContainer {
+    .pronouns-container {
       grid-column: 1 / 2;
       grid-row: 3 / 4;
       display: grid;
       gap: .5rem;
-      
-      .pronounListSubContainer {
-        display: grid;
-        grid-template-columns: 1fr min-content;
-        gap: .5rem;
-        font-size: 1.2rem;
-        margin: 0;
-        border-radius: 5px;
-        @include border(unfocus);
-        backdrop-filter: blur(5px) saturate(200%);
+    }
 
-        summary {
-          cursor: pointer;
-          padding: .5rem 1rem;
-          background: transparent;
-          transition: all .2s ease-out;
-          border-radius: 5px;
-  
-          &:focus {
-            outline: none;
-          }
-  
-          &:hover,
-          &:focus-visible {
-            @include border(focus);
-            background: rgba(white, .15);
-          }
-        }
-
-        .pronounTags {
-          grid-row: 2 / 3;
-          grid-column: 1 / -1;
-          list-style: none;
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          gap: .5rem;
-    
-          &:empty:before {
-            content: 'No pronouns added.';
-            color: gray;
-            font-size: 1.2rem;
-            line-height: 1;
-          }
-          
-          li {
-            white-space: nowrap;
-            background-color: rgba($cta-color, .15) !important;
-            box-shadow:
-              inset 1px 1px 0 $cta-color,
-              inset 1px -1px 0 $cta-color,
-              inset -1px 1px 0 $cta-color,
-              inset -1px -1px 0 $cta-color;
-            border-radius: 10rem;
-            padding: 0 1rem;
-            font-size: 1.4rem;
-            max-width: 25ch;
-            overflow: hidden;
-            text-overflow: ellipsis;
-    
-            a {
-              display: inline-block;
-              color: gray;
-              transform: scale(0);
-              width: 0;
-              transition: all .2s ease-out;
-              line-height: 0;
-              
-              &:hover,
-              &:focus-visible {
-                color: white;
-              }
-            }
-            
-            &:hover a,
-            a:focus-visible {
-              width: min-content;
-              transform: scale(1);
-              margin-right: .5rem;
-            }
-    
-            input {
-              display: none;
-            }
-          }
-        }
-
-        .addPronounInput {
-          grid-column: 1 / 2;
-          grid-row: 3 / 4;
-          padding: 0 1rem;
-          width: 100%;
-          font-size: 1.4rem;
-        }
-    
-        button {
-          grid-column: 2 / -1;
-          grid-row: 3 / 4;
-        }
-      }
+    .ask-me {
+      grid-column: 1 / -1;
+      grid-row: 4 / 5;
     }
   }
 
