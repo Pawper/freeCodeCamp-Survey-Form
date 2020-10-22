@@ -56,9 +56,9 @@
         </label>
       </div>
       <!-- User Story #14: Inside the form element, I can select several fields from a series of checkboxes, each of which must have a value attribute. -->
-      <fieldset class="form__fieldset">
+      <fieldset class="form__fieldset gender-status">
         <legend>Gender Status</legend>
-        <input type="checkbox" id="unpreferred" name="gender-sharing" value="unpreferred" class="actualcheckbox unpreferred standalone-checkbox">
+        <input type="checkbox" id="unpreferred" name="gender-sharing" value="unpreferred" class="checkbox unpreferred standalone-checkbox">
         <label for="unpreferred">Prefer not to say</label>
         <div class="form__toggle">
             <input id="genderToggle" type="checkbox" class="form__toggle-input" name="gender-status" value="gendered">
@@ -66,48 +66,54 @@
             <label for="genderToggle" class="toggleLeft">Agendered</label>
             <label for="genderToggle" class="toggleRight">Gendered</label>
         </div>
-        <details class="tag-box genderFields hidden">
-          <summary class="tag-box__summary">Gender Expression(s)<ul class="tag-box__tags" id="gender-expresions"></ul></summary>
-          <div class="tag-box__expand-container">
-            <input class="tag-box__add-input" type="text" placeholder="femme, butch, masc">
-            <button type="button" class="btn--add tag-box__add-btn" title="Add Pronoun">
-              <i class="fas fa-plus"></i>
-            </button>
-          </div>
-        </details>
-        <fieldset class="form__fieldset genderFields hidden">
-          <legend>Gender(s)</legend>
-          <div class="checkboxGrid" id="genderList">
-            <label for="nonbinaryGender">
-              <input type="checkbox" id="nonbinaryGender" class="actualcheckbox" name="gender" value="nonbinaryGender">
-              <span>Nonbinary</span>
-            </label>
-            <label for="genderfluid">
-              <input type="checkbox" id="genderfluid" class="actualcheckbox" name="gender" value="genderfluid">
-              <span>Genderfluid</span>
-            </label>
-            <label for="genderqueer">
-              <input type="checkbox" id="genderqueer" class="actualcheckbox" name="gender" value="genderqueer">
-              <span>Genderqueer</span>
-            </label>
-            <label for="woman">
-              <input type="checkbox" id="woman" class="actualcheckbox" name="gender" value="woman">
-              <span>Woman</span>
-            </label>
-            <label for="man">
-              <input type="checkbox" id="man" class="actualcheckbox" name="gender" value="man">
-              <span>Man</span>
-            </label>
-            <a id="addOtherGenderButton">
-              <i class="fas fa-plus"></i>
-              <span>Other</span>
-            </a>
-          </div>
-        </fieldset>
+        <div class="genderFields hidden">
+          <details class="tag-box">
+            <summary class="tag-box__summary">Gender Expression(s)<ul class="tag-box__tags" id="gender-expresions"></ul></summary>
+            <div class="tag-box__expand-container">
+              <input class="tag-box__add-input" type="text" placeholder="femme, butch, masc">
+              <button type="button" class="btn--add tag-box__add-btn" title="Add Pronoun">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </details>
+          <details class="checkbox-box">
+            <summary class="checkbox-box__summary">Gender(s)<ul class="checkbox-box__tags" id="genders"></ul></summary>
+            <div class="checkboxGrid checkbox-box__expand-container" id="genderList">
+              <label for="nonbinaryGender" class="checkbox-box__checkbox-label">
+                <input type="checkbox" id="nonbinaryGender" class="checkbox checkbox-box__checkbox" name="gender" value="nonbinaryGender">
+                <span class="checkbox-box__text">Nonbinary</span>
+              </label>
+              <label for="genderfluid" class="checkbox-box__checkbox-label">
+                <input type="checkbox" id="genderfluid" class="checkbox checkbox-box__checkbox" name="gender" value="genderfluid">
+                <span class="checkbox-box__text">Genderfluid</span>
+              </label>
+              <label for="genderqueer" class="checkbox-box__checkbox-label">
+                <input type="checkbox" id="genderqueer" class="checkbox checkbox-box__checkbox" name="gender" value="genderqueer">
+                <span class="checkbox-box__text">Genderqueer</span>
+              </label>
+              <label for="woman" class="checkbox-box__checkbox-label">
+                <input type="checkbox" id="woman" class="checkbox checkbox-box__checkbox" name="gender" value="woman">
+                <span class="checkbox-box__text">Woman</span>
+              </label>
+              <label for="man" class="checkbox-box__checkbox-label">
+                <input type="checkbox" id="man" class="checkbox checkbox-box__checkbox" name="gender" value="man">
+                <span class="checkbox-box__text">Man</span>
+              </label>
+              <input class="checkbox-box__add-input" type="text" placeholder="Add a gender">
+              <button type="button" class="btn--add checkbox-box__add-btn" title="Add gender">
+                <i class="fas fa-plus"></i>
+              </button>
+              <!-- <a id="addOtherGenderButton">
+                <i class="fas fa-plus"></i>
+                <span>Other</span>
+              </a> -->
+            </div>
+          </details>
+        </div>
       </fieldset>
       <fieldset class="form__fieldset">
         <legend>Pronouns</legend>
-        <input type="checkbox" id="any-all" name="any-all" value="yes" class="actualcheckbox any-all standalone-checkbox">
+        <input type="checkbox" id="any-all" name="any-all" value="yes" class="checkbox any-all standalone-checkbox">
         <label for="any-all">Any/All</label>
         <!-- User Story #12: Inside the form element, I can select an option from a dropdown that has a corresponding id="dropdown". -->
         <div class="pronouns">
@@ -170,7 +176,7 @@
             </details>
           </div>
           <div class="ask-me">
-            <input type="checkbox" id="ask-me" name="ask-me" value="yes" class="actualcheckbox standalone-checkbox">
+            <input type="checkbox" id="ask-me" name="ask-me" value="yes" class="checkbox standalone-checkbox">
             <label for="ask-me">Ask me often</label>
           </div>
         </div>

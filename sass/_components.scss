@@ -255,3 +255,200 @@
 
   }
 }
+
+.checkbox {
+  @include box(input);
+  
+  &:checked {
+    &::before {
+      position: absolute;
+      left: .5rem;
+      text-align: center;
+      text-shadow: none;
+    }
+  }
+}
+
+.checkbox-box {
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  gap: .5rem;
+  font-size: 1.4rem;
+  margin: 0;
+  border-radius: 5px;
+  @include border(unfocus);
+  backdrop-filter: blur(5px) saturate(200%);
+
+  &__summary {
+    cursor: pointer;
+    padding: .5rem 1rem;
+    background: transparent;
+    transition: all .2s ease-out;
+    border-radius: 5px;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+      @include border(focus);
+      background: $focus-bg;
+      color: white;
+    }
+
+    .checkbox-box[open] &:hover,
+    .checkbox-box[open] &:focus-visible {
+      box-shadow: none;
+      background: linear-gradient(rgba(white, .2), transparent);
+    }
+
+    .checkbox-box[open] & > .checkbox-box__tags {
+      display: none;
+    }
+  }
+
+  &__tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    align-items: center;
+    padding: .5rem .5rem .5rem 1.5rem;
+
+    &:empty:before {
+      content: 'No tags added.';
+      color: gray;
+      line-height: 1;
+    }
+  }
+
+  &__tag {
+    white-space: nowrap;
+    background-color: rgba($cta-color, .15);
+    box-shadow:
+      inset 1px 1px 0 $cta-color,
+      inset 1px -1px 0 $cta-color,
+      inset -1px 1px 0 $cta-color,
+      inset -1px -1px 0 $cta-color;
+    border-radius: 10rem;
+    padding: 0 1rem;
+    max-width: 22ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    transition: all .2s ease-out;
+
+    &:hover .tag-box__tag-remove::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -1.5rem;
+      margin-left: -1.5rem;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+    }
+
+    &-remove {
+      position: relative;
+      display: inline-block;
+      color: gray;
+      transform: scale(0);
+      width: 0;
+      min-width: 0;
+      min-height: 0;
+      line-height: 0;
+      border-radius: 50%;
+      border: 0 solid transparent;
+      transition: all .2s ease-out;
+      outline: none;
+      
+      &:hover,
+      &:focus-visible {
+        margin-left: -1rem;
+        min-width: 3rem;
+        min-height: 3rem;
+        color: white;
+        border-radius: 50%;
+        border: 1px solid white;
+        display: inline-grid;
+        place-content: center;
+        text-decoration: none;
+      }
+    }
+    
+    &:hover &-remove,
+    &-remove:focus-visible {
+      width: min-content;
+      transform: scale(1);
+      margin-right: .5rem;
+    }
+  }
+
+  &__expand-container {
+    padding: 1rem;
+    padding-top: 0;
+    margin-left: 1.25rem;
+    margin-top: .5rem;
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    align-items: center;
+    gap: .5rem;
+
+  }
+
+  &__checkbox-label {
+    @include border(unfocus);
+    border-radius: 3px;
+    background-color: transparent;
+    padding: 1rem;
+    transition: all .1s ease-in;
+    position: relative;
+    grid-column: 1/ -1;
+
+    &:hover input[type="checkbox"] + span::after,
+    & input[type="checkbox"]:focus-visible + span::after {
+      opacity: 1;
+      background-color: rgba(white, .15);
+    }
+  }
+
+  &__checkbox {
+    & + .checkbox-box__text::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      border-radius: 3px;
+      // opacity: 0;
+      background-color: transparent;
+      backdrop-filter: blur(10px);
+      transition: all .1s ease-in;
+    }
+
+    &:checked + .checkbox-box__text::after {
+      opacity: 1;
+      background-color: rgba($cta-color, .15) !important;
+      box-shadow:
+        inset 1px 1px 0 $cta-color,
+        inset 1px -1px 0 $cta-color,
+        inset -1px 1px 0 $cta-color,
+        inset -1px -1px 0 $cta-color;
+    }
+  }
+
+  &__add-input {
+    @include box(input);
+    width: 100%;
+    font-size: 1.6rem !important;
+  }
+
+  &__add-btn {
+
+  }
+}
