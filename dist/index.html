@@ -61,11 +61,18 @@
         <input type="checkbox" id="unpreferred" name="gender-sharing" value="unpreferred" class="checkbox unpreferred standalone-checkbox">
         <label for="unpreferred">Prefer not to say</label>
         <div class="form__toggle">
+            <input id="genderToggleA" type="radio" name="gender-status" value="agendered"  class="form__toggle-input" checked>
+            <label for="genderToggleA">Agendered</label>
+            <input id="genderToggleB" type="radio" name="gender-status" value="gendered" class="form__toggle-input form__toggle-opener">
+            <label for="genderToggleB" class="form__toggle-label"></label>
+            <label for="genderToggleB">Gendered</label>
+        </div>
+        <!-- <div class="form__toggle">
             <input id="genderToggle" type="checkbox" class="form__toggle-input" name="gender-status" value="gendered">
             <label for="genderToggle" class="form__toggle-label"></label>
             <label for="genderToggle" class="toggleLeft">Agendered</label>
             <label for="genderToggle" class="toggleRight">Gendered</label>
-        </div>
+        </div> -->
         <div class="genderFields hidden">
           <details class="tag-box">
             <summary class="tag-box__summary">Gender Expression(s)<ul class="tag-box__tags" id="gender-expresions"></ul></summary>
@@ -185,7 +192,7 @@
         <textarea  class="form__textinput-input input-textarea" name="comment" id="comments" placeholder="Enter your background here..."></textarea>
       </div>
       <!-- User Story #16: Inside the form element, I am presented with a button with id="submit" to submit all my inputs. -->
-      <button id="submit" type="submit" class="btn--cta"><span>Submit</span></button>
+      <button id="button" type="submit" class="btn--cta"><span>Submit</span></button>
     </form>
   </div>
   <span class="attribution">Background photo by <a href="https://unsplash.com/@alekversusworld?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Alek Kalinowski</a> on <a href="https://unsplash.com/s/photos/spaceship?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>

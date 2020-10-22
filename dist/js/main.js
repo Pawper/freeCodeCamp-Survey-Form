@@ -9,14 +9,18 @@ surveyFrom.onkeypress = function(keypress) {
 }
 
 // Toggle shows/hides gender fieldsets
-let toggle = document.getElementById('genderToggle');
+let toggleA = document.getElementById('genderToggleA');
+let toggleB = document.getElementById('genderToggleB');
 let genderFields = document.querySelectorAll('.genderFields');
 function toggleGenderField(genderField, index, array) {
   console.log('Toggled gender fieldset:');
   console.log(genderField);
   genderField.classList.toggle('hidden');
 };
-toggle.addEventListener("change", function () {
+toggleA.addEventListener("change", function () {
+  genderFields.forEach(toggleGenderField);
+});
+toggleB.addEventListener("change", function () {
   genderFields.forEach(toggleGenderField);
 });
 

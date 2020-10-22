@@ -199,20 +199,20 @@
       }
     }
 
-    &-input:checked + &-label::after {
+    &-opener:checked + &-label::after {
       left: 2rem;
     }
 
-    &-input:not(:checked) ~ .toggleRight,
-    &-input:checked ~ .toggleLeft {
+    &-opener:not(:checked) ~ .toggleRight,
+    &-opener:checked ~ .toggleLeft {
       color: gray;
     }
 
-    &-input:focus-visible + &-label::before, &-input:hover + &-label::before {
+    &-opener:focus-visible + &-label::before, &-opener:hover + &-label::before {
       @include border(midfocus);
       background: $focus-bg;
     }
-    &-input:focus-visible + &-label::after, &-input:hover + &-label::after {
+    &-opener:focus-visible + &-label::after, &-opener:hover + &-label::after {
       background-color: white;
     }
   }

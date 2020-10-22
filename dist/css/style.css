@@ -677,17 +677,17 @@
         border: none;
         box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset 1px -1px 0 rgba(255, 255, 255, 0.1), inset -1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(255, 255, 255, 0.1);
         transition: all .1s ease; }
-    .form__toggle-input:checked + .form__toggle-label::after {
+    .form__toggle-opener:checked + .form__toggle-label::after {
       left: 2rem; }
-    .form__toggle-input:not(:checked) ~ .toggleRight,
-    .form__toggle-input:checked ~ .toggleLeft {
+    .form__toggle-opener:not(:checked) ~ .toggleRight,
+    .form__toggle-opener:checked ~ .toggleLeft {
       color: gray; }
-    .form__toggle-input:focus-visible + .form__toggle-label::before, .form__toggle-input:hover + .form__toggle-label::before {
+    .form__toggle-opener:focus-visible + .form__toggle-label::before, .form__toggle-opener:hover + .form__toggle-label::before {
       border: none;
       box-shadow: inset 1px 1px 0 white, inset 1px -1px 0 white, inset -1px 1px 0 white, inset -1px -1px 0 white, 1px 1px 0 white, 1px -1px 0 white, -1px 1px 0 white, -1px -1px 0 white;
       outline: none;
       background: rgba(0, 0, 0, 0.5) linear-gradient(transparent, rgba(255, 255, 255, 0.2)); }
-    .form__toggle-input:focus-visible + .form__toggle-label::after, .form__toggle-input:hover + .form__toggle-label::after {
+    .form__toggle-opener:focus-visible + .form__toggle-label::after, .form__toggle-opener:hover + .form__toggle-label::after {
       background-color: white; }
   .form .pronouns {
     display: grid;
