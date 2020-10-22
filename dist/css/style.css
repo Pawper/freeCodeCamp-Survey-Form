@@ -689,43 +689,6 @@
       background: rgba(0, 0, 0, 0.5) linear-gradient(transparent, rgba(255, 255, 255, 0.2)); }
     .form__toggle-input:focus-visible + .form__toggle-label::after, .form__toggle-input:hover + .form__toggle-label::after {
       background-color: white; }
-  .form .checkboxGrid > div {
-    border: none;
-    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset 1px -1px 0 rgba(255, 255, 255, 0.1), inset -1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(255, 255, 255, 0.1);
-    transition: all .1s ease;
-    backdrop-filter: blur(10px);
-    border-radius: 3px;
-    background-color: transparent;
-    padding: .84rem 1rem;
-    transition: all .1s ease-in;
-    display: grid;
-    grid-template-columns: min-content 1fr min-content;
-    gap: .5rem; }
-    .form .checkboxGrid > div > a {
-      cursor: pointer; }
-    .form .checkboxGrid > div i {
-      height: 2rem;
-      width: 2rem;
-      display: inline-grid;
-      place-content: center; }
-    .form .checkboxGrid > div input[type="text"] {
-      padding: 0 1rem;
-      width: 100%; }
-  .form .checkboxGrid > a {
-    border: none;
-    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset 1px -1px 0 rgba(255, 255, 255, 0.1), inset -1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(255, 255, 255, 0.1);
-    transition: all .1s ease;
-    border-radius: 3px;
-    background-color: transparent;
-    padding: 1rem;
-    transition: all .1s ease-in; }
-    .form .checkboxGrid > a i {
-      height: 2rem;
-      width: 2rem;
-      display: inline-grid;
-      place-content: center; }
-    .form .checkboxGrid > a:hover, .form .checkboxGrid > a:focus-visible {
-      background-color: rgba(255, 255, 255, 0.15); }
   .form .pronouns {
     display: grid;
     grid-template-rows: 0 auto;

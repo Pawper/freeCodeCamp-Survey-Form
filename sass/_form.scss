@@ -216,57 +216,6 @@
       background-color: white;
     }
   }
-  
-  .checkboxGrid {
-    & > div {
-      @include border(unfocus);
-      backdrop-filter: blur(10px);
-      border-radius: 3px;
-      background-color: transparent;
-      padding: .84rem 1rem;
-      transition: all .1s ease-in;
-      display: grid;
-      grid-template-columns: min-content 1fr min-content;
-      gap: .5rem;
-
-      & > a {
-        cursor: pointer;        
-      }
-
-      i {
-        height: 2rem;
-        width: 2rem;
-        display: inline-grid;
-        place-content: center;
-      }
-
-      input[type="text"] {
-        padding: 0 1rem;
-        width: 100%;
-      }
-    }
-
-    & > a {
-      @include border(unfocus);
-      border-radius: 3px;
-      background-color: transparent;
-      padding: 1rem;
-      transition: all .1s ease-in;
-
-      i {
-        height: 2rem;
-        width: 2rem;
-        display: inline-grid;
-        place-content: center;
-
-      }
-
-      &:hover,
-      &:focus-visible {
-        background-color: rgba(white, .15);
-      }
-    }
-  }
 
   .pronouns {
     display: grid;
