@@ -1,141 +1,204 @@
 <!DOCTYPE html>
-<!-- lang attribute helps search engines return language specific results, and it is also used by screen readers that switch language profiles to provide the correct accent and pronunciation. Also used for hyphenation via CSS -->
 <html lang="en">
-<!-- SEO cheat sheet https://learn-the-web.algonquindesign.ca/topics/seo-cheat-sheet/ -->
 <!-- HTML Validator https://validator.w3.org/#validate_by_input -->
 
 <head>
-  <!-- For compatibility -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-  <!-- Every html page must have a title! Use · as a separater. -->
-  <title>FCC: Survey Form</title>
-
-  <!-- Robots meta tags https://developers.google.com/search/reference/robots_meta_tag -->
-  <!-- Remove if you want the site to be crawled -->
+  <title>Survey</title>
   <meta name="robots" content="NOINDEX, NOFOLLOW">
 
-  <!-- Links -->
-  <!-- CSS -->
+  <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 </head>
 
 <body>
   <div class="container">
     <header class="header">
-      <h1 id="title">freeCodeCamp Survey Form</h1>
-      <p id="description" class="description"> Thank you for taking the time to help us improve the platform</p>
+      <!-- User Story #1: I can see a title with id="title" in H1 sized text. -->
+      <h1 id="title">Self ID Form</h1>
+      <!-- User Story #2: I can see a short explanation with id="description" in P sized text. -->
+      <p id="description">Please share your self-identification.</p>
     </header>
-    <form action="" id="survey-form">
-      <div class="form-group">
-        <label for="name" id="name-label">Name</label>
-        <input class="form-control" type="text" id="name" name="name" placeholder="Enter your name" required>
-      </div>
-      <div class="form-group">
-        <label for="email" id="email-label">Email</label>
-        <input class="form-control" type="email" id="email" name="email" placeholder="Enter your Email" required>
-      </div>
-      <div class="form-group">
-        <label for="age" id="number-label">Age <span class="clue">(optional)</span></label>
-        <input class="form-control" type="number" min="10" max="99" id="number" name="age" placeholder="Age">
-      </div>
-      <div class="form-group">
-        <p>Which option best describes your current role?</p>
-        <select class="form-control" name="role" id="dropdown" required>
-          <option value="" disabled selected>Select your current role</option>
-          <option value="student">Student</option>
-          <option value="job">Full Time Job</option>
-          <option value="learner">Full Time Learner</option>
-          <option value="preferNo">Prefer not to say</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <p>Would you recommend freeCodeCamp to a friend?</p>
-        <label>
-          <input class="input-radio" type="radio" name="user-recommend" value="definitely">Definitely
-        </label>
-        <label>
-          <input class="input-radio" type="radio" name="user-recommend" value="maybe">Maybe
-        </label>
-        <label>
-          <input class="input-radio" type="radio" name="user-recommend" value="not-sure">Not sure
+    <!-- User Story #3: I can see a form with id="survey-form". -->
+    <form id="survey-form" class="form">
+      <div class="form__textinput">
+        <!-- User Story #4: Inside the form element, I am required to enter my name in a field with id="name". -->
+        <!-- User Story #11: For the name, email, and number input fields, I can see placeholder text that gives me a description or instructions for each field. -->
+        <input class="form__textinput-input" type="text" id="name" name="name" placeholder="Enter your name" required>
+        <!-- User Story #10: For the name, email, and number input fields inside the form I can see corresponding labels that describe the purpose of each field with the following ids: id="name-label", id="email-label", and id="number-label". -->
+        <label for="name" id="name-label" class="form__textinput-label">
+          Name
         </label>
       </div>
-      <div class="form-group">
-        <p>What is your favorite feature of freeCodeCamp?</p>
-        <select class="form-control" name="mostLike" id="most-like" required="required">
-          <option value="" disabled selected>Select an option</option>
-          <option value="challenges">Challenges</option>
-          <option value="projects">Projects</option>
-          <option value="community">Community</option>
-          <option value="openSource">Open Source</option>
-        </select>
+      <div class="form__textinput">
+        <!-- User Story #5: Inside the form element, I am required to enter an email in a field with id="email". -->
+        <!-- User Story #6: If I enter an email that is not formatted correctly, I will see an HTML5 validation error. -->
+        <!-- User Story #11: For the name, email, and number input fields, I can see placeholder text that gives me a description or instructions for each field. -->
+        <input class="form__textinput-input" type="email" id="email" name="email" placeholder="Enter your Email" required>
+        <!-- User Story #10: For the name, email, and number input fields inside the form I can see corresponding labels that describe the purpose of each field with the following ids: id="name-label", id="email-label", and id="number-label". -->
+        <label for="email" id="email-label" class="form__textinput-label">
+          Email
+        </label>
       </div>
-      <div class="form-group">
+      <div class="form__textinput">
+        <!-- User Story #7: Inside the form, I can enter a number in a field with id="number". -->
+        <!-- User Story #8: If I enter non-numbers in the number input, I will see an HTML5 validation error. -->
+        <!-- User Story #9: If I enter numbers outside the range of the number input, which are defined by the min and max attributes, I will see an HTML5 validation error. -->
+        <!-- User Story #11: For the name, email, and number input fields, I can see placeholder text that gives me a description or instructions for each field. -->
+        <input class="form__textinput-input" type="number" min="18" max="99" id="number" name="age" placeholder="Age">
+        <!-- User Story #10: For the name, email, and number input fields inside the form I can see corresponding labels that describe the purpose of each field with the following ids: id="name-label", id="email-label", and id="number-label". -->
+        <label for="age" id="number-label" class="form__textinput-label">
+          Age <span class="clue">(optional)</span>
+        </label>
+      </div>
+      <!-- User Story #14: Inside the form element, I can select several fields from a series of checkboxes, each of which must have a value attribute. -->
+      <fieldset class="form__fieldset gender-status">
+        <legend>Gender Status</legend>
+        <input type="checkbox" id="unpreferred" name="gender-sharing" value="unpreferred" class="checkbox unpreferred standalone-checkbox">
+        <label for="unpreferred">Prefer not to say</label>
+        <div class="form__toggle">
+            <input id="genderToggleA" type="radio" name="gender-status" value="agendered"  class="form__toggle-input" checked>
+            <label for="genderToggleA">Agendered</label>
+            <input id="genderToggleB" type="radio" name="gender-status" value="gendered" class="form__toggle-input form__toggle-opener">
+            <label for="genderToggleB" class="form__toggle-label"></label>
+            <label for="genderToggleB">Gendered</label>
+        </div>
+        <!-- <div class="form__toggle">
+            <input id="genderToggle" type="checkbox" class="form__toggle-input" name="gender-status" value="gendered">
+            <label for="genderToggle" class="form__toggle-label"></label>
+            <label for="genderToggle" class="toggleLeft">Agendered</label>
+            <label for="genderToggle" class="toggleRight">Gendered</label>
+        </div> -->
+        <div class="genderFields hidden">
+          <details class="tag-box">
+            <summary class="tag-box__summary">Gender Expression(s)<ul class="tag-box__tags" id="gender-expresions"></ul></summary>
+            <div class="tag-box__expand-container">
+              <input class="tag-box__add-input" type="text" placeholder="femme, butch, masc">
+              <button type="button" class="btn--add tag-box__add-btn" title="Add Pronoun">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </details>
+          <details class="checkbox-box">
+            <summary class="checkbox-box__summary">Gender(s)<ul class="checkbox-box__tags" id="genders"></ul></summary>
+            <div class="checkbox-box__expand-container">
+              <label for="Nonbinary" class="checkbox-box__checkbox-label">
+                <input type="checkbox" id="Nonbinary" class="checkbox checkbox-box__checkbox" name="gender" value="Nonbinary">
+                <span class="checkbox-box__text">Nonbinary</span>
+              </label>
+              <label for="Genderfluid" class="checkbox-box__checkbox-label">
+                <input type="checkbox" id="Genderfluid" class="checkbox checkbox-box__checkbox" name="gender" value="Genderfluid">
+                <span class="checkbox-box__text">Genderfluid</span>
+              </label>
+              <label for="Genderqueer" class="checkbox-box__checkbox-label">
+                <input type="checkbox" id="Genderqueer" class="checkbox checkbox-box__checkbox" name="gender" value="Genderqueer">
+                <span class="checkbox-box__text">Genderqueer</span>
+              </label>
+              <label for="Woman" class="checkbox-box__checkbox-label">
+                <input type="checkbox" id="Woman" class="checkbox checkbox-box__checkbox" name="gender" value="Woman">
+                <span class="checkbox-box__text">Woman</span>
+              </label>
+              <label for="Man" class="checkbox-box__checkbox-label">
+                <input type="checkbox" id="Man" class="checkbox checkbox-box__checkbox" name="gender" value="Man">
+                <span class="checkbox-box__text">Man</span>
+              </label>
+              <input class="checkbox-box__add-input" type="text" placeholder="Add a gender">
+              <button type="button" class="btn--add checkbox-box__add-btn" title="Add gender">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </details>
+        </div>
+      </fieldset>
+      <fieldset class="form__fieldset">
+        <legend>Pronouns</legend>
+        <input type="checkbox" id="any-all" name="any-all" value="yes" class="checkbox any-all standalone-checkbox">
+        <label for="any-all">Any/All</label>
+        <!-- User Story #12: Inside the form element, I can select an option from a dropdown that has a corresponding id="dropdown". -->
+        <div class="pronouns">
+          <div class="add-from-set">
+            <!-- User Story #13: Inside the form element, I can select a field from one or more groups of radio buttons. Each group should be grouped using the name attribute. -->
+            <div class="select-wrapper">
+              <select id="dropdown" class="add-from-set__select" title="Add pronouns from set">
+                <option disabled selected>Add from set...</option>
+              </select>
+            </div>
+            <button type="button" class="btn--add add-from-set__add-btn" title="Add pronoun set">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+          <div class="pronouns-container">
+            <details class="tag-box">
+              <summary class="tag-box__summary">Subject Pronoun(s)<ul class="tag-box__tags" id="subject-pronouns"></ul></summary>
+              <div class="tag-box__expand-container">
+                <input class="tag-box__add-input" type="text" placeholder="they, she, he">
+                <button type="button" class="btn--add tag-box__add-btn" title="Add Pronoun">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </details>
+            <details class="tag-box">
+              <summary class="tag-box__summary">Object Pronoun(s)<ul class="tag-box__tags" id="object-pronouns"></ul></summary>
+              <div class="tag-box__expand-container">
+                <input class="tag-box__add-input" type="text" placeholder="them, her, him">
+                <button type="button" class="btn--add tag-box__add-btn" title="Add Pronoun">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </details>
+            <details class="tag-box">
+              <summary class="tag-box__summary">Possessive Pronoun(s)<ul class="tag-box__tags" id="possessive-pronouns"></ul></summary>
+              <div class="tag-box__expand-container">
+                <input class="tag-box__add-input" type="text" placeholder="their, her, his">
+                <button type="button" class="btn--add tag-box__add-btn" title="Add Pronoun">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </details>
+            <details class="tag-box">
+              <summary class="tag-box__summary">Possessive Determiner(s)<ul class="tag-box__tags" id="possessive-determiners"></ul></summary>
+              <div class="tag-box__expand-container">
+                <input class="tag-box__add-input" type="text" placeholder="theirs, hers, his">
+                <button type="button" class="btn--add tag-box__add-btn" title="Add Pronoun">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </details>
+            <details class="tag-box">
+            <summary class="tag-box__summary">Reflexive Pronoun(s)<ul class="tag-box__tags" id="reflexive-pronouns"></ul></summary>
+            <div class="tag-box__expand-container">
+              <input class="tag-box__add-input" type="text" placeholder="themself, herself, himself">
+              <button type="button" class="btn--add tag-box__add-btn" title="Add Pronoun">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+            </details>
+          </div>
+          <div class="ask-me">
+            <input type="checkbox" id="ask-me" name="ask-me" value="yes" class="checkbox standalone-checkbox">
+            <label for="ask-me">Ask me often</label>
+          </div>
+        </div>
+      </fieldset>
+      <div class="form__background-info">
         <p>
-          What would you like to see improved?
-          <span class="clue">(Check all that apply)</span>
+          Background information
         </p>
-        <label>
-          <input type="checkbox" name="prefer" value="front-end-projects" class="input-checkbox">
-          Front-end Projects
-        </label>
-        <label>
-          <input type="checkbox" name="prefer" value="back-end-projects" class="input-checkbox">
-          Back-end Projects
-        </label>
-        <label>
-          <input type="checkbox" name="prefer" value="data-visualization" class="input-checkbox">
-          Data Visualization
-        </label>
-        <label>
-          <input type="checkbox" name="prefer" value="challenges" class="input-checkbox">
-          Challenges
-        </label>
-        <label>
-          <input type="checkbox" name="prefer" value="open-source-community" class="input-checkbox">
-          Open Source Community
-        </label>
-        <label>
-          <input type="checkbox" name="prefer" value="gitter-help-rooms" class="input-checkbox">
-          Gitter help rooms
-        </label>
-        <label>
-          <input type="checkbox" name="prefer" value="vidoes" class="input-checkbox">
-          Videos
-        </label>
-        <label>
-          <input type="checkbox" name="prefer" value="city-meetups" class="input-checkbox">
-          City Meetups
-        </label>
-        <label>
-          <input type="checkbox" name="prefer" value="wiki" class="input-checkbox">
-          Wiki
-        </label>
-        <label>
-          <input type="checkbox" name="prefer" value="forum" class="input-checkbox">
-          Forum
-        </label>
-        <label>
-          <input type="checkbox" name="prefer" value="additional-courses" class="input-checkbox">
-          Additional Courses
-        </label>
+        <!-- User Story #15: Inside the form element, I am presented with a textarea at the end for additional comments. -->
+        <textarea  class="form__textinput-input input-textarea" name="comment" id="comments" placeholder="Enter your background here..."></textarea>
       </div>
-      <div class="form-group">
-        <p>
-          Any comments or suggestions?
-        </p>
-        <textarea name="comment" id="comments" class="input-textarea" placeholder="Enter your comment here..."></textarea>
-      </div>
-      <button id="submit" type="submit" class="submit-button">Submit</button>
+      <!-- User Story #16: Inside the form element, I am presented with a button with id="submit" to submit all my inputs. -->
+      <button id="button" type="submit" class="btn--cta"><span>Submit</span></button>
     </form>
   </div>
-
+  <span class="attribution">Background photo by <a href="https://unsplash.com/@alekversusworld?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Alek Kalinowski</a> on <a href="https://unsplash.com/s/photos/spaceship?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
   <!-- Put scripts down here so HTML render isn't stopped to load JS -->
   <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>
