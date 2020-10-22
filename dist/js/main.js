@@ -229,15 +229,21 @@ function addCheckboxButtonClick(addCheckboxButton) {
 /////////////////////// ADD CHECKLIST ITEM //////////////////////////
 
 function addCheckbox(checkboxValue, checkboxTagListID) {
+  let checkList = document.getElementById(checkboxTagListID).parentNode.parentNode.getElementsByClassName('checkbox-box__expand-container')[0];
+
+  console.log(checkList.querySelector('[value="' + checkboxValue + '"'));
+
   if (checkboxValue == "" || checkboxValue == null || checkboxValue == 'Add from set...') {
     console.log('Checkbox input is empty');
-  } else if (document.getElementById(checkboxTagListID).querySelector('[value="' + checkboxValue + '"') !== null) {
+  } else if (checkList.querySelector('[value="' + checkboxValue + '"') !== null) {
     console.log('Checkbox exists')
   } else {
     console.log("Function received " + checkboxValue);
-    console.log("Checkbox list:");
+    console.log("Checkbox tag list:");
     let checkboxTagList = document.getElementById(checkboxTagListID);
     console.log(checkboxTagList);
+    console.log("Checklist:")
+    console.log(checkList);
 
     // Checkbox tag list name
     let checkboxTagListName = checkboxTagList.parentElement.childNodes[0].nodeValue;
@@ -248,9 +254,9 @@ function addCheckbox(checkboxValue, checkboxTagListID) {
   
     let checkboxTagRemove = document.createElement('a');
       checkboxTagRemove.setAttribute('class','checkbox-box__tag-remove');
-      checkboxTagRemove.setAttribute('title','Remove "' + checkboxValue + '" from ' + checkboxTagListName);
+      checkboxTagRemove.setAttribute('title','Uncheck "' + checkboxValue + '" from ' + checkboxTagListName);
     let checkboxTagRemoveIcon = document.createElement('i');
-      checkboxTagRemoveIcon.setAttribute('class', 'fas fa-times');
+      checkboxTagRemoveIcon.setAttribute('class', 'fas fa-check-double');
       
     let checkboxTagText = document.createTextNode(checkboxValue);
       
@@ -261,7 +267,7 @@ function addCheckbox(checkboxValue, checkboxTagListID) {
   
     checkboxTagList.appendChild(checkboxTag);
 
-    console.log('Added ' + checkboxValue + ':');
+    console.log('Added ' + checkboxValue + ' tag:');
     console.log(checkboxTag);
 
     // Tag remove click
@@ -298,6 +304,8 @@ function addCheckbox(checkboxValue, checkboxTagListID) {
     addedCheckboxLabel.appendChild(addedCheckboxSpan);
 
     ///////////////// TODO: ADD CHECKBOX TO LIST !!!! ///////////////
+    checkList.insertBefore(addedCheckboxLabel, checkList.getElementsByClassName('checkbox-box__add-input')[0]);
+
       
     // add click listeners to add animation class
     addedCheckboxInput.addEventListener("click", function () {
