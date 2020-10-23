@@ -63,9 +63,10 @@
         <div class="form__toggle">
             <!-- User Story #13: Inside the form element, I can select a field from one or more groups of radio buttons. Each group should be grouped using the name attribute. -->
             <input id="genderToggleA" type="radio" name="gender-status" value="agendered"  class="form__toggle-input" checked>
-            <label for="genderToggleA">Agendered</label>
-            <input id="genderToggleB" type="radio" name="gender-status" value="gendered" class="form__toggle-input form__toggle-opener">
-            <label for="genderToggleB" class="form__toggle-label"></label>
+            <input id="genderToggleB" type="radio" name="gender-status" value="gendered" class="form__toggle-input">
+            <label for="genderToggleA" class="form__toggle-label">Agendered</label>
+            <label for="genderToggleA" class="form__toggle-unset"></label>
+            <label for="genderToggleB" class="form__toggle-toggle"></label>
             <label for="genderToggleB">Gendered</label>
         </div>
         <div class="genderFields hidden">
