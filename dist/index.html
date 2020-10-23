@@ -60,14 +60,14 @@
         <legend>Gender Status</legend>
         <input type="checkbox" id="unpreferred" name="gender-sharing" value="unpreferred" class="checkbox unpreferred standalone-checkbox">
         <label for="unpreferred">Prefer not to say</label>
-        <div class="form__toggle">
+        <div class="radio-toggle">
             <!-- User Story #13: Inside the form element, I can select a field from one or more groups of radio buttons. Each group should be grouped using the name attribute. -->
-            <input id="genderToggleA" type="radio" name="gender-status" value="agendered"  class="form__toggle-input" checked>
-            <input id="genderToggleB" type="radio" name="gender-status" value="gendered" class="form__toggle-input">
-            <label for="genderToggleA" class="form__toggle-label">Agendered</label>
-            <label for="genderToggleA" class="form__toggle-unset"></label>
-            <label for="genderToggleB" class="form__toggle-toggle"></label>
-            <label for="genderToggleB">Gendered</label>
+            <input id="toggleA" type="radio" name="gender-status" value="agendered"  class="radio-toggle__input-a" checked>
+            <input id="toggleB" type="radio" name="gender-status" value="gendered" class="radio-toggle__input-b">
+            <label for="toggleA" class="radio-toggle__label-a">Agendered</label>
+            <label for="toggleA" class="radio-toggle__unset"></label>
+            <label for="toggleB" class="radio-toggle__toggle"></label>
+            <label for="toggleB" class="radio-toggle__label-b">Gendered</label>
         </div>
         <div class="genderFields hidden">
           <details class="tag-box">

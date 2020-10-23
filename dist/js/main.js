@@ -9,8 +9,8 @@ surveyFrom.onkeypress = function(keypress) {
 }
 
 // Toggle shows/hides gender fieldsets
-let toggleA = document.getElementById('genderToggleA');
-let toggleB = document.getElementById('genderToggleB');
+let toggleA = document.getElementById('toggleA');
+let toggleB = document.getElementById('toggleB');
 let genderFields = document.querySelectorAll('.genderFields');
 function toggleGenderField(genderField, index, array) {
   console.log('Toggled gender fieldset:');
