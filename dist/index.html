@@ -61,18 +61,13 @@
         <input type="checkbox" id="unpreferred" name="gender-sharing" value="unpreferred" class="checkbox unpreferred standalone-checkbox">
         <label for="unpreferred">Prefer not to say</label>
         <div class="form__toggle">
+            <!-- User Story #13: Inside the form element, I can select a field from one or more groups of radio buttons. Each group should be grouped using the name attribute. -->
             <input id="genderToggleA" type="radio" name="gender-status" value="agendered"  class="form__toggle-input" checked>
             <label for="genderToggleA">Agendered</label>
             <input id="genderToggleB" type="radio" name="gender-status" value="gendered" class="form__toggle-input form__toggle-opener">
             <label for="genderToggleB" class="form__toggle-label"></label>
             <label for="genderToggleB">Gendered</label>
         </div>
-        <!-- <div class="form__toggle">
-            <input id="genderToggle" type="checkbox" class="form__toggle-input" name="gender-status" value="gendered">
-            <label for="genderToggle" class="form__toggle-label"></label>
-            <label for="genderToggle" class="toggleLeft">Agendered</label>
-            <label for="genderToggle" class="toggleRight">Gendered</label>
-        </div> -->
         <div class="genderFields hidden">
           <details class="tag-box">
             <summary class="tag-box__summary">Gender Expression(s)<ul class="tag-box__tags" id="gender-expresions"></ul></summary>
@@ -118,11 +113,10 @@
         <legend>Pronouns</legend>
         <input type="checkbox" id="any-all" name="any-all" value="yes" class="checkbox any-all standalone-checkbox">
         <label for="any-all">Any/All</label>
-        <!-- User Story #12: Inside the form element, I can select an option from a dropdown that has a corresponding id="dropdown". -->
         <div class="pronouns">
           <div class="add-from-set">
-            <!-- User Story #13: Inside the form element, I can select a field from one or more groups of radio buttons. Each group should be grouped using the name attribute. -->
             <div class="select-wrapper">
+              <!-- User Story #12: Inside the form element, I can select an option from a dropdown that has a corresponding id="dropdown". -->
               <select id="dropdown" class="add-from-set__select" title="Add pronouns from set">
                 <option disabled selected>Add from set...</option>
               </select>
@@ -192,7 +186,7 @@
         <textarea  class="form__textinput-input input-textarea" name="comment" id="comments" placeholder="Enter your background here..."></textarea>
       </div>
       <!-- User Story #16: Inside the form element, I am presented with a button with id="submit" to submit all my inputs. -->
-      <button id="submit" type="button" class="btn--cta"><span>Submit</span></button>
+      <button id="submit" type="submit" class="btn--cta"><span>Submit</span></button>
     </form>
   </div>
   <span class="attribution">Background photo by <a href="https://unsplash.com/@alekversusworld?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Alek Kalinowski</a> on <a href="https://unsplash.com/s/photos/spaceship?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
