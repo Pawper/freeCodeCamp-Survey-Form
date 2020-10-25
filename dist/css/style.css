@@ -618,6 +618,19 @@
       border: 1px solid rgba(255, 255, 255, 0.5); }
     .form__fieldset:-webkit-any(fieldset) {
       border: 1px solid rgba(255, 255, 255, 0.5); }
+    .form__fieldset::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 1.25rem);
+      background-color: rgba(0, 0, 0, 0.75);
+      z-index: -1; }
+
+@-moz-document url-prefix() {
+  .form__fieldset::before {
+    height: calc(100% + 1.25rem); } }
     .form__fieldset fieldset {
       margin-top: .5rem; }
       .form__fieldset fieldset legend {
@@ -642,7 +655,19 @@
     .form .gender-status .genderFields {
       grid-area: 4 / 1 / 5 / -1;
       display: grid;
-      gap: .5rem; }
+      gap: .5rem;
+      display: relative; }
+      .form .gender-status .genderFields .hidden {
+        transform: scaleY(0);
+        transform-origin: top center;
+        max-height: 0;
+        opacity: 0;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        width: 91%;
+        left: 1.5rem;
+        transition: all .1s ease-out; }
   .form .actualcheckbox {
     display: block;
     padding: 0.5rem;
@@ -692,11 +717,11 @@
     margin-left: 1rem; }
     .form .standalone-checkbox:checked + label::before {
       content: '';
-      width: 92.25%;
+      width: calc(100% - 2rem);
       height: 2.8rem;
       position: absolute;
       left: 50%;
-      margin-left: -46%;
+      margin-left: calc(-1 * (50% - 1rem));
       border-radius: .5rem;
       background-color: rgba(140, 0, 255, 0.15);
       backdrop-filter: blur(5px) saturate(200%);
@@ -801,17 +826,6 @@
   .form .form__background-info {
     display: grid;
     grid-template-rows: min-content auto; }
-  .form .hidden {
-    transform: scaleY(0);
-    transform-origin: top center;
-    max-height: 0;
-    opacity: 0;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    width: 91%;
-    left: 1.5rem;
-    transition: all .3s ease-out; }
 
 .body {
   width: 100%;
