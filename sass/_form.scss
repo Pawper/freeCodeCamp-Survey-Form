@@ -53,6 +53,22 @@
     transition: all .3s ease-out;
     align-self: start;
     position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 1.25rem);
+      background-color: rgba(black, 0.75);
+
+      z-index: -1;
+
+      @-moz-document url-prefix() {
+        height: calc(100% + 1.25rem);
+      }
+    }
     
     fieldset {
       margin-top: .5rem;
@@ -96,6 +112,20 @@
       grid-area: 4 / 1 / 5 / -1;
       display: grid;
       gap: .5rem;
+      display: relative;
+
+      .hidden {
+        transform: scaleY(0);
+        transform-origin: top center;
+        max-height: 0;
+        opacity: 0;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        width: 91%;
+        left: 1.5rem;
+        transition: all .1s ease-out;
+      }
     }
   }
 
@@ -117,11 +147,11 @@
 
     & + label::before {
       content: '';
-      width: 92.25%;
+      width: calc(100% - 2rem);
       height: 2.8rem;
       position: absolute;
       left: 50%;
-      margin-left: -46%;
+      margin-left: calc(-1 * (50% - 1rem));
       border-radius: .5rem;
       background-color: rgba($cta-color, .15);
       backdrop-filter: blur(5px) saturate(200%);
@@ -217,18 +247,5 @@
   .form__background-info {
     display: grid;
     grid-template-rows: min-content auto;
-  }
-
-  .hidden {
-    transform: scaleY(0);
-    transform-origin: top center;
-    max-height: 0;
-    opacity: 0;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    width: 91%;
-    left: 1.5rem;
-    transition: all .3s ease-out;
   }
 }

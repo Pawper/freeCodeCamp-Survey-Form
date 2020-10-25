@@ -7,7 +7,6 @@ surveyForm.onkeypress = (keypress) => {
   }
 };
 
-let genderFields = document.querySelectorAll(".genderFields");
 function toggleGenderField(genderField, index, array) {
   console.log(`Toggled gender fieldset:`);
   console.log(genderField);
@@ -18,9 +17,10 @@ let toggleInputs = [
   document.getElementById("toggleA"),
   document.getElementById("toggleB"),
 ];
+let genderFields = document.querySelector(".genderFields").children;
 toggleInputs.forEach((toggleInput) => {
   toggleInput.addEventListener("change", () => {
-    genderFields.forEach(toggleGenderField);
+    Array.prototype.forEach.call(genderFields, toggleGenderField)
   });
 });
 
