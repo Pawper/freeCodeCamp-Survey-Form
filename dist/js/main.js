@@ -48,24 +48,17 @@ function checkboxPulse() {
 }
 checkboxPulse();
 
-let pronounSets = [];
-let pronounSelect = document.getElementById("dropdown");
-fetch("./pronouns.tab")
-  .then((response) => response.text())
-  .then((text) => {
-    let lines = text.split("\n");
-    lines.forEach((line) => {
-      pronounSet = line.replaceAll("\t", " / ");
-      pronounSets.push(pronounSet);
-    });
-    pronounSets.pop();
-    for (pronounSet in pronounSets) {
-      pronounSelect.options[pronounSelect.options.length] = new Option(
-        pronounSets[pronounSet],
-        pronounSet
-      );
-    }
+const pronounSelect = document.getElementById("dropdown");
+async function fillPronounSetSelect() {
+  const response = await fetch("./pronouns.tab");
+  const text = await response.text();
+  const pronounSets = await text.replaceAll("\t", " / ").split("\n");
+  pronounSets.forEach((pronounSet) => {
+    pronounSelect.options[pronounSelect.options.length] = 
+    new Option(pronounSet, pronounSet);
   });
+}
+fillPronounSetSelect();
 
 function addTag(tagValue, tagListID) {
   if (tagValue == "" || tagValue == null || tagValue == `Add from set...`) {
@@ -210,29 +203,19 @@ function addCheckboxTag(checkboxValue, checkboxTagListID) {
 
   let checkboxTagListName =
     checkboxTagList.parentElement.childNodes[0].nodeValue;
-  let checkboxTagID = `${checkboxTagListID}-${checkboxValue.replace(
-    /\s/g,
-    ""
-  )}-tag`;
+  let checkboxTagID = `${checkboxTagListID}-${checkboxValue.replace(/\s/g,"")}-tag`;
 
-  let checkboxTag = document.createElement("li");
-  checkboxTag.setAttribute("class", "checkbox-box__tag");
-  checkboxTag.setAttribute("id", checkboxTagID);
-  checkboxTag.innerHTML = `<a class="checkbox-box__tag-remove" title="Uncheck &quot;${checkboxValue}&quot; from ${checkboxTagListName}"><i class="fas fa-times"></i></a>${checkboxValue}
-    `;
-
-  checkboxTagList.appendChild(checkboxTag);
+  checkboxTagList.insertAdjacentHTML('beforeend', `<li id="${checkboxTagID}" class="checkbox-box__tag"><a class="checkbox-box__tag-remove" title="Uncheck &quot;${checkboxValue}&quot; from ${checkboxTagListName}"><i class="fas fa-times"></i></a>${checkboxValue}</li>`);
   console.log(`Added ${checkboxValue} tag:`);
-  console.log(checkboxTag);
+  console.log(checkboxTagList.lastElementChild);
 
-  let checkboxTagRemove = checkboxTag.getElementsByTagName("a")[0];
-  checkboxTagRemove.addEventListener("click", () => {
+  document.querySelector(`#${checkboxTagID} > a`).addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     removeCheckboxTag(checkboxValue, checkboxTagListID);
     let checkboxID = checkboxValue.replace(/\s/g, "");
     document.getElementById(checkboxID).checked = false;
   });
-
-  // TODO: Prevent propagation
 }
 
 function removeCheckboxTag(checkboxValue, checkboxTagListID) {
