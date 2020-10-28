@@ -8,7 +8,7 @@
   color: inherit;
   background-color: transparent;
   backdrop-filter: blur(5px) saturate(150%);
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   line-height: 0;
   display: grid;
   place-content: center;
@@ -20,16 +20,30 @@
   border: none;
   cursor: pointer;
 
-  &:hover {
-    background-color: rgba(white, .15);
-  }
-
   &--add {
     @extend .btn;
     padding: 1.5rem;
     width: 2rem;
     height: 2rem;
     @include border(unfocus);
+    text-shadow: none;
+
+    &:hover {
+      background: transparent
+        linear-gradient(transparent, rgba($cta-color, 0.5));
+      transform: translateY(-2px);
+      box-shadow: inset 2px 2px 0 rgba(white, 1),
+        inset 2px -2px 0 rgba(white, 1), inset -2px 2px 0 rgba(white, 1),
+        inset -2px -2px 0 rgba(white, 1), 0 0 1rem rgba($cta-color, 0.5);
+
+      &:active {
+        transform: translateY(0);
+        background: white linear-gradient(transparent, transparent);
+        box-shadow: inset 2px 2px 0 rgba(white, 1),
+          inset 2px -2px 0 rgba(white, 1), inset -2px 2px 0 rgba(white, 1),
+          inset -2px -2px 0 rgba(white, 1), 0 0 1rem rgba(white, 0.5);
+      }
+    }
   }
 
   &--cta {
@@ -43,83 +57,84 @@
     box-shadow: inset 2px 2px 0 rgba($cta-color, 1),
       inset 2px -2px 0 rgba($cta-color, 1), inset -2px 2px 0 rgba($cta-color, 1),
       inset -2px -2px 0 rgba($cta-color, 1);
-  
-      &:hover {
-        text-shadow: 1px 1px 0 $cta-color,
-        -1px -1px 0 $cta-color,
-        1px -1px 0 $cta-color,
-        -1px 1px 0 $cta-color;
-        background: radial-gradient(circle, $cta-color 10%, rgba($cta-color, 0.3) 70%, transparent);
-        box-shadow: inset 2px 2px 0 rgba($cta-color, 1),
-          inset 2px -2px 0 rgba($cta-color, 1),
-          inset -2px 2px 0 rgba($cta-color, 1),
-          inset -2px -2px 0 rgba($cta-color, 1),
-          inset 2px 2px 3rem rgba($cta-color, .2),
-          inset 2px -2px 3rem rgba($cta-color, .2),
-          inset -2px 2px 3rem rgba($cta-color, .2),
-          inset -2px -2px 3rem rgba($cta-color, .2),
-          0 2px 3rem black;
-          transform: scale(1.025) translateY(-.25rem);
+
+    &:hover {
+      text-shadow: 1px 1px 0 $cta-color, -1px -1px 0 $cta-color,
+        1px -1px 0 $cta-color, -1px 1px 0 $cta-color;
+      background: radial-gradient(
+        circle,
+        $cta-color 10%,
+        rgba($cta-color, 0.3) 70%,
+        transparent
+      );
+      box-shadow: inset 2px 2px 0 rgba($cta-color, 1),
+        inset 2px -2px 0 rgba($cta-color, 1),
+        inset -2px 2px 0 rgba($cta-color, 1),
+        inset -2px -2px 0 rgba($cta-color, 1),
+        inset 2px 2px 3rem rgba($cta-color, 0.2),
+        inset 2px -2px 3rem rgba($cta-color, 0.2),
+        inset -2px 2px 3rem rgba($cta-color, 0.2),
+        inset -2px -2px 3rem rgba($cta-color, 0.2), 0 2px 3rem black;
+      transform: scale(1.025) translateY(-0.25rem);
+    }
+
+    &:active {
+      background: radial-gradient(circle, rgba(white, 0.5), transparent),
+        $cta-color;
+      transform: scale(1) translateY(0);
+      box-shadow: inset 2px 2px 0 rgba($cta-color, 1),
+        inset 2px -2px 0 rgba($cta-color, 1),
+        inset -2px 2px 0 rgba($cta-color, 1),
+        inset -2px -2px 0 rgba($cta-color, 1),
+        inset 2px 2px 3rem rgba($cta-color, 0.2),
+        inset 2px -2px 3rem rgba($cta-color, 0.2),
+        inset -2px 2px 3rem rgba($cta-color, 0.2),
+        inset -2px -2px 3rem rgba($cta-color, 0.2),
+        2px 2px 3rem rgba($cta-color, 0.25),
+        2px -2px 3rem rgba($cta-color, 0.25),
+        -2px 2px 3rem rgba($cta-color, 0.25),
+        -2px -2px 3rem rgba($cta-color, 0.25),
+        25vw 2px 3rem rgba($cta-color, 0.25),
+        -25vw -2px 3rem rgba($cta-color, 0.25);
+
+      & span {
+        text-shadow: 1px 1px 3rem rgba(white, 1), 1px -1px 3rem rgba(white, 1),
+          -1px 1px 3rem rgba(white, 1), -1px -1px 3rem rgba(white, 1),
+          5rem 1px 10rem rgba(white, 1), -5rem -1px 10rem rgba(white, 1);
+        position: relative;
+
+        &::before,
+        &::after {
+          content: "";
+          height: 1rem;
+          width: 100%;
+          background: radial-gradient(
+            circle,
+            rgba(white, 0.65) 90%,
+            rgba(white, 0.5)
+          );
+          position: absolute;
+          top: 25%;
+          box-shadow: 1px 1px 1rem rgba(white, 0.5),
+            1px -1px 1rem rgba(white, 0.5), -1px 1px 1rem rgba(white, 0.5),
+            -1px -1px 1rem rgba(white, 0.5), 5rem 1px 10rem rgba(white, 0.5),
+            -5rem -1px 10rem rgba(white, 0.5);
+          transition: all 0.3s ease-out;
+        }
+
+        &::before {
+          transform: translateX(-50%) scaleX(2);
+          animation: sideways-flare-left 0.3s;
+          opacity: 0;
+        }
+
+        &::after {
+          transform: translateX(-50%) scaleX(2);
+          animation: sideways-flare-right 0.3s;
+          opacity: 0;
+        }
       }
-  
-      &:active {
-        background: radial-gradient(circle, rgba(white, .5), transparent), $cta-color;
-        transform: scale(1) translateY(0);
-        box-shadow: inset 2px 2px 0 rgba($cta-color, 1),
-          inset 2px -2px 0 rgba($cta-color, 1),
-          inset -2px 2px 0 rgba($cta-color, 1),
-          inset -2px -2px 0 rgba($cta-color, 1),
-          inset 2px 2px 3rem rgba($cta-color, .2),
-          inset 2px -2px 3rem rgba($cta-color, .2),
-          inset -2px 2px 3rem rgba($cta-color, .2),
-          inset -2px -2px 3rem rgba($cta-color, .2),
-          2px 2px 3rem rgba($cta-color, .25),
-          2px -2px 3rem rgba($cta-color, .25),
-          -2px 2px 3rem rgba($cta-color, .25),
-          -2px -2px 3rem rgba($cta-color, .25),
-          25vw 2px 3rem rgba($cta-color, .25),
-          -25vw -2px 3rem rgba($cta-color, .25);
-  
-          & span {
-            text-shadow: 
-            1px 1px 3rem rgba(white, 1),
-            1px -1px 3rem rgba(white, 1),
-            -1px 1px 3rem rgba(white, 1),
-            -1px -1px 3rem rgba(white, 1),
-            5rem 1px 10rem rgba(white, 1),
-            -5rem -1px 10rem rgba(white, 1);
-            position: relative;
-  
-            &::before, &::after {
-              content: '';
-              height: 1rem;
-              width: 100%;
-              background: radial-gradient(circle, rgba(white, .65) 90%, rgba(white, .5));
-              position: absolute;
-              top: 25%;
-              box-shadow: 
-              1px 1px 1rem rgba(white, .5),
-              1px -1px 1rem rgba(white, .5),
-              -1px 1px 1rem rgba(white, .5),
-              -1px -1px 1rem rgba(white, .5),
-              5rem 1px 10rem rgba(white, .5),
-              -5rem -1px 10rem rgba(white, .5);
-              transition: all .3s ease-out;
-            }
-            
-            &::before {
-              transform: translateX(-50%) scaleX(2);
-              animation: sideways-flare-left .3s;
-              opacity: 0;
-            }
-            
-            &::after {
-              transform: translateX(-50%) scaleX(2);
-              animation: sideways-flare-right .3s;
-              opacity: 0;
-            }
-          }
-      }
+    }
   }
 }
 
@@ -130,7 +145,7 @@
   }
 
   100% {
-    transform: translateX(-1000%) scaleX(.1);
+    transform: translateX(-1000%) scaleX(0.1);
     opacity: 0;
   }
 }
@@ -143,18 +158,24 @@
   }
 
   100% {
-    transform: translateX(1000%) scaleX(.1);
+    transform: translateX(1000%) scaleX(0.1);
     opacity: 0;
     animation-play-state: paused;
   }
 }
 
 .radio-toggle {
+  justify-self: center;
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(3, min-content);
+  grid-template-columns: 1fr min-content 1fr;
   gap: 0.5rem;
   position: relative;
+
+  & label {
+    margin-bottom: 0.2rem;
+    text-align: center;
+  }
 
   &__input-a {
     opacity: 0;
@@ -162,6 +183,27 @@
 
     &:not(:checked) ~ .radio-toggle__label-a {
       color: gray;
+    }
+
+    &:checked ~ .radio-toggle__label-a {
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -4.85rem;
+        height: 2.6rem;
+        width: calc(100% + 5.5rem);
+        background: rgba($cta-color, 0.15);
+        box-shadow: inset 1px 1px 0 $cta-color, inset 1px -1px 0 $cta-color,
+          inset -1px 1px 0 $cta-color, inset -1px -1px 0 $cta-color;
+        z-index: -1;
+        border-top-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+        border-top-right-radius: 1.25rem;
+        border-bottom-right-radius: 1.25rem;
+      }
     }
 
     &:focus-visible ~ .radio-toggle__toggle::before,
@@ -173,8 +215,12 @@
     &:focus-visible ~ .radio-toggle__toggle::after,
     &:hover ~ .radio-toggle__toggle::after {
       background-color: white;
+      box-shadow: 0 0 2rem white,
+        .5rem .5rem 1rem rgba(white, .5),
+        -.5rem .5rem 1rem rgba(white, .5),
+        .5rem -.5rem 1rem rgba(white, .5),
+        -.5rem -.5rem 1rem rgba(white, .5);
     }
-
   }
 
   &__input-b {
@@ -189,6 +235,27 @@
       color: gray;
     }
 
+    &:checked ~ .radio-toggle__label-b {
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -4.8rem;
+        height: 2.6rem;
+        width: calc(100% + 5.45rem);
+        background: rgba($cta-color, 0.15);
+        box-shadow: inset 1px 1px 0 $cta-color, inset 1px -1px 0 $cta-color,
+          inset -1px 1px 0 $cta-color, inset -1px -1px 0 $cta-color;
+        z-index: -1;
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        border-top-left-radius: 1.25rem;
+        border-bottom-left-radius: 1.25rem;
+      }
+    }
+
     &:focus-visible ~ .radio-toggle__toggle::before,
     &:hover ~ .radio-toggle__toggle::before {
       @include border(midfocus);
@@ -198,6 +265,11 @@
     &:focus-visible ~ .radio-toggle__toggle::after,
     &:hover ~ .radio-toggle__toggle::after {
       background-color: white;
+      box-shadow: 0 0 2rem white,
+        .5rem .5rem 1rem rgba(white, .5),
+        -.5rem .5rem 1rem rgba(white, .5),
+        .5rem -.5rem 1rem rgba(white, .5),
+        -.5rem -.5rem 1rem rgba(white, .5);
     }
 
     &:checked ~ .radio-toggle__unset {
@@ -206,11 +278,9 @@
   }
 
   &__label-a {
-
   }
 
   &__label-b {
-
   }
 
   &__unset {
@@ -243,9 +313,13 @@
     &::before {
       width: 100%;
       height: 100%;
-      background-color: rgba(black, 0.75);
+      background-color: rgba(black, 0.5);
       border-radius: 10rem;
-      @include border(unfocus);
+      box-shadow: 
+        inset 1px 1px 0 rgba($cta-color, 1),
+        inset 1px -1px 0 rgba($cta-color, 1),
+        inset -1px 1px 0 rgba($cta-color, 1),
+        inset -1px -1px 0 rgba($cta-color, 1);
       transition: all 0.2s ease;
     }
 
@@ -255,9 +329,12 @@
       width: 1.65rem;
       height: 1.6rem;
       border-radius: 50%;
-      background-color: rgba(black, 0.75);
+      background-color: $cta-color;
+      background-image:
+        linear-gradient(rgba(white, .7), transparent);
+      border-top: 1px solid white;
+      box-shadow: inset 0 2px 0 white;
       transition: all 0.2s ease;
-      @include border(unfocus)
     }
   }
 }
@@ -265,18 +342,17 @@
 .tag-box {
   display: grid;
   grid-template-columns: 1fr min-content;
-  gap: .5rem;
+  gap: 0.5rem;
   font-size: 1.4rem;
   margin: 0;
   border-radius: 5px;
   @include border(unfocus);
-  backdrop-filter: blur(5px) saturate(200%);
 
   &__summary {
     cursor: pointer;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     background: transparent;
-    transition: all .2s ease-out;
+    transition: all 0.2s ease-out;
     border-radius: 5px;
 
     &:focus {
@@ -285,29 +361,29 @@
 
     &:hover,
     &:focus-visible {
-      @include border(focus);
       background: $focus-bg;
       color: white;
+      box-shadow: 0 2px 0 white, 0 1rem 1rem rgba($cta-color, 0.25);
     }
 
     .tag-box[open] &:hover,
     .tag-box[open] &:focus-visible {
       box-shadow: none;
-      background: linear-gradient(rgba(white, .2), transparent);
-
+      background: linear-gradient(rgba($cta-color, 0.5), transparent);
+      box-shadow: 0 -2px 0 white, 0 -1rem 1rem rgba($cta-color, 0.25);
     }
   }
-  
+
   &__tags {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: .5rem;
+    gap: 0.5rem;
     align-items: center;
-    padding: .5rem .5rem .5rem 1.5rem;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
 
     &:empty:before {
-      content: 'No tags added.';
+      content: "No tags added.";
       color: gray;
       line-height: 1;
     }
@@ -315,22 +391,19 @@
 
   &__tag {
     white-space: nowrap;
-    background-color: rgba($cta-color, .15);
-    box-shadow:
-      inset 1px 1px 0 $cta-color,
-      inset 1px -1px 0 $cta-color,
-      inset -1px 1px 0 $cta-color,
-      inset -1px -1px 0 $cta-color;
+    background-color: rgba($cta-color, 0.15);
+    box-shadow: inset 1px 1px 0 $cta-color, inset 1px -1px 0 $cta-color,
+      inset -1px 1px 0 $cta-color, inset -1px -1px 0 $cta-color;
     border-radius: 10rem;
     padding: 0 1rem;
     max-width: 22ch;
     overflow: hidden;
     text-overflow: ellipsis;
     position: relative;
-    transition: all .2s ease-out;
+    transition: all 0.2s ease-out;
 
     &:hover .tag-box__tag-remove::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 50%;
       left: 50%;
@@ -352,9 +425,9 @@
       line-height: 0;
       border-radius: 50%;
       border: 0 solid transparent;
-      transition: all .2s ease-out;
+      transition: all 0.2s ease-out;
       outline: none;
-      
+
       &:hover,
       &:focus-visible {
         margin-left: -1rem;
@@ -368,12 +441,12 @@
         text-decoration: none;
       }
     }
-    
+
     &:hover &-remove,
     &-remove:focus-visible {
       width: min-content;
       transform: scale(1);
-      margin-right: .5rem;
+      margin-right: 0.5rem;
     }
 
     &-form-save {
@@ -387,7 +460,7 @@
     margin-left: 1.25rem;
     display: grid;
     grid-template-columns: 1fr min-content;
-    gap: .5rem;
+    gap: 0.5rem;
     align-items: center;
   }
 
@@ -398,17 +471,20 @@
   }
 
   &__add-btn {
-
   }
 }
 
 .checkbox {
   @include box(input);
-  
+
   &:checked {
+    box-shadow: inset 1px 1px 0 rgba($cta-color, 1),
+      inset 1px -1px 0 rgba($cta-color, 1), inset -1px 1px 0 rgba($cta-color, 1),
+      inset -1px -1px 0 rgba($cta-color, 1);
+
     &::before {
       position: absolute;
-      left: .5rem;
+      left: 0.5rem;
       text-align: center;
       text-shadow: none;
     }
@@ -418,18 +494,17 @@
 .checkbox-box {
   display: grid;
   grid-template-columns: 1fr min-content;
-  gap: .5rem;
+  gap: 0.5rem;
   font-size: 1.4rem;
   margin: 0;
   border-radius: 5px;
   @include border(unfocus);
-  backdrop-filter: blur(5px) saturate(200%);
 
   &__summary {
     cursor: pointer;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     background: transparent;
-    transition: all .2s ease-out;
+    transition: all 0.2s ease-out;
     border-radius: 5px;
 
     &:focus {
@@ -438,15 +513,16 @@
 
     &:hover,
     &:focus-visible {
-      @include border(focus);
       background: $focus-bg;
       color: white;
+      box-shadow: 0 2px 0 white, 0 1rem 1rem rgba($cta-color, 0.25);
     }
 
     .checkbox-box[open] &:hover,
     .checkbox-box[open] &:focus-visible {
       box-shadow: none;
-      background: linear-gradient(rgba(white, .2), transparent);
+      background: linear-gradient(rgba($cta-color, 0.5), transparent);
+      box-shadow: 0 -2px 0 white, 0 -1rem 1rem rgba($cta-color, 0.25);
     }
 
     .checkbox-box[open] & > .checkbox-box__tags {
@@ -458,12 +534,12 @@
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: .5rem;
+    gap: 0.5rem;
     align-items: center;
-    padding: .5rem .5rem .5rem 1.5rem;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
 
     &:empty:before {
-      content: 'No tags added.';
+      content: "No tags added.";
       color: gray;
       line-height: 1;
     }
@@ -471,22 +547,19 @@
 
   &__tag {
     white-space: nowrap;
-    background-color: rgba($cta-color, .15);
-    box-shadow:
-      inset 1px 1px 0 $cta-color,
-      inset 1px -1px 0 $cta-color,
-      inset -1px 1px 0 $cta-color,
-      inset -1px -1px 0 $cta-color;
+    background-color: rgba($cta-color, 0.15);
+    box-shadow: inset 1px 1px 0 $cta-color, inset 1px -1px 0 $cta-color,
+      inset -1px 1px 0 $cta-color, inset -1px -1px 0 $cta-color;
     border-radius: 10rem;
     padding: 0 1rem;
     max-width: 22ch;
     overflow: hidden;
     text-overflow: ellipsis;
     position: relative;
-    transition: all .2s ease-out;
+    transition: all 0.2s ease-out;
 
     &:hover .tag-box__tag-remove::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 50%;
       left: 50%;
@@ -508,9 +581,9 @@
       line-height: 0;
       border-radius: 50%;
       border: 0 solid transparent;
-      transition: all .2s ease-out;
+      transition: all 0.2s ease-out;
       outline: none;
-      
+
       &:hover,
       &:focus-visible {
         margin-left: -1rem;
@@ -524,12 +597,12 @@
         text-decoration: none;
       }
     }
-    
+
     &:hover &-remove,
     &-remove:focus-visible {
       width: min-content;
       transform: scale(1);
-      margin-right: .5rem;
+      margin-right: 0.5rem;
     }
   }
 
@@ -537,12 +610,11 @@
     padding: 1rem;
     padding-top: 0;
     margin-left: 1.25rem;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     display: grid;
     grid-template-columns: 1fr min-content;
     align-items: center;
-    gap: .5rem;
-
+    gap: 0.5rem;
   }
 
   &__checkbox-label {
@@ -550,20 +622,20 @@
     border-radius: 3px;
     background-color: transparent;
     padding: 1rem;
-    transition: all .1s ease-in;
+    transition: all 0.1s ease-in;
     position: relative;
     grid-column: 1/ -1;
 
     &:hover input[type="checkbox"] + span::after,
     & input[type="checkbox"]:focus-visible + span::after {
       opacity: 1;
-      background-color: rgba(white, .15);
+      background-color: rgba(white, 0.15);
     }
   }
 
   &__checkbox {
     & + .checkbox-box__text::after {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -574,17 +646,14 @@
       // opacity: 0;
       background-color: transparent;
       backdrop-filter: blur(10px);
-      transition: all .1s ease-in;
+      transition: all 0.1s ease-in;
     }
 
     &:checked + .checkbox-box__text::after {
       opacity: 1;
-      background-color: rgba($cta-color, .15) !important;
-      box-shadow:
-        inset 1px 1px 0 $cta-color,
-        inset 1px -1px 0 $cta-color,
-        inset -1px 1px 0 $cta-color,
-        inset -1px -1px 0 $cta-color;
+      background-color: rgba($cta-color, 0.15) !important;
+      box-shadow: inset 1px 1px 0 $cta-color, inset 1px -1px 0 $cta-color,
+        inset -1px 1px 0 $cta-color, inset -1px -1px 0 $cta-color;
     }
   }
 

@@ -1,4 +1,4 @@
-$cta-color: rgb(140, 0, 255);
+$cta-color: rgb(174, 0, 255);
 $text-shadow: 1px 1px 0 black,
 -1px -1px 0 black,
 1px -1px 0 black,
@@ -11,4 +11,4 @@ $text-shadow: 1px 1px 0 black,
 -1px -1px 0 black,
 1px -1px 0 black,
 -1px 1px 0 black;
-$focus-bg: rgba(black, .5) linear-gradient(transparent, rgba(white, .2));
+$focus-bg: linear-gradient(transparent, rgba($cta-color, .5));

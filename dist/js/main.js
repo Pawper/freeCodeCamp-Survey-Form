@@ -48,6 +48,31 @@ function checkboxPulse() {
 }
 checkboxPulse();
 
+let addButtons = document.querySelectorAll(".btn--add");
+function addBtnPulse() {
+  Array.prototype.forEach.call(addButtons, (addBtn) => {
+    addBtn.addEventListener(
+      "click",
+      (event) => {
+        event.preventDefault;
+        addBtn.classList.remove("activated");
+        void addBtn.offsetWidth;
+        addBtn.classList.add("activated");
+        setTimeout(
+          (addBtn) => {
+            addBtn.classList.remove("activated");
+          },
+          parseFloat(getComputedStyle(addBtn).animationDuration, 10) * 1000,
+          addBtn
+        );
+      },
+      false
+    );
+  });
+}
+addBtnPulse();
+
+
 const pronounSelect = document.getElementById("dropdown");
 async function fillPronounSetSelect() {
   const response = await fetch("./pronouns.tab");
@@ -76,22 +101,21 @@ function addTag(tagValue, tagListID) {
     console.log(`Tag list ${tagListName}:`);
     console.log(tagList);
 
-    let tag = document.createElement("li");
-    tag.setAttribute("class", "tag-box__tag");
-    tag.innerHTML = `
-        <a class="tag-box__tag-remove" title="Remove &quot;${tagValue}&quot; from ${tagListName}">
-        <i class="fas fa-times"></i>
-        </a>${tagValue}<input type="text" class="tag-box__tag-form-save" name="${tagListName}" value="${tagValue}">`;
+    let tagID = `${tagListID}-${tagValue.replace(/\s/g,"")}-tag`;
 
-    tagList.appendChild(tag);
+    tagList.insertAdjacentHTML('beforeend', `<li id="${tagID}" class="tag-box__tag"><a class="tag-box__tag-remove" title="Remove &quot;${tagValue}&quot; from ${tagListName}">
+    <i class="fas fa-times"></i>
+    </a>${tagValue}<input type="text" class="tag-box__tag-form-save" name="${tagListName}" value="${tagValue}"></li>`)
+
     console.log(`Added ${tagValue}:`);
-    console.log(tag);
+    console.log(tagList.lastChild);
 
-    let tagRemove = tag.getElementsByTagName("a")[0];
-    tagRemove.addEventListener("click", () => {
+    document.querySelector(`#${tagID} > a`).addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
       console.log(`Removed ${tagValue}:`);
-      console.log(tag);
-      tag.parentElement.removeChild(tag);
+      console.log(document.getElementById(tagID));
+      document.getElementById(tagID).parentElement.removeChild(document.getElementById(tagID));
     });
   }
 }
