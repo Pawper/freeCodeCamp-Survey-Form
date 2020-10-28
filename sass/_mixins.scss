@@ -14,10 +14,10 @@
     
     // NOTE: Firefox doesn't support box-shadow for fieldset
     &:is(fieldset) {
-      border: 1px solid rgba(white, 0.5);
+      border: 1px solid rgba(white, 0.25);
     }
     &:-webkit-any(fieldset) {
-      border: 1px solid rgba(white, 0.5);
+      border: 1px solid rgba(white, 0.25);
     }
   }
 
@@ -35,7 +35,8 @@
       inset 2px 2px 0 white,
       inset 2px -2px 0 white,
       inset -2px 2px 0 white,
-      inset -2px -2px 0 white;
+      inset -2px -2px 0 white,
+      0 0 1rem $cta-color;
     outline: none;
   }
 
@@ -64,7 +65,7 @@
   }
 
   @if $box-type == input {
-    background-color: rgba(black, 0.75);
+    background-color: rgba(black, 0.5);
     @include border(unfocus);
     -moz-appearance: textfield;
 
@@ -80,6 +81,7 @@
     }
 
     &[type="checkbox"] {
+      background-color: transparent;
       display: inline-block;
       font-size: 1.4rem;
       padding: 0;
@@ -119,7 +121,7 @@
     inset -2px -2px 0 white,
     0 0 0 0 rgba(white, 0),
     0 0 0 0 rgba(white, 0.7);
-    background: rgba(black, .5) linear-gradient(transparent, rgba(white, .2));
+    background: transparent linear-gradient(transparent, rgba(white, .2));
   }
 
   20% {
@@ -138,7 +140,7 @@
     inset -1px -1px 0 white,
     0 0 0 10px rgba(white, 0),
     0 0 2rem 2rem rgba(white, 0);
-    background: rgba(black, .5) linear-gradient(transparent, rgba(white, .2));
+    background: transparent linear-gradient(transparent, rgba(white, .2));
   }
 
 	100% {
@@ -149,6 +151,6 @@
     inset -1px -1px 0 rgba(white, .1),
     0 0 0 0 rgba(white, 0),
     0 0 0 0 rgba(white, 0);
-    background: rgba(black, .5) linear-gradient(transparent, rgba(white, .2));
+    background: transparent linear-gradient(transparent, rgba(white, .2));
 	}
 }

@@ -61,6 +61,10 @@ a {
   select {
     color: gray;
   }
+
+  ::placeholder {
+    opacity: 1;
+  }
 }
 
 fieldset {
@@ -75,4 +79,10 @@ select {
   font-size: 1.4rem !important;
 }
 
-h1, h2, h3, h4, h5, h6 { font-family: 'Orbitron', sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Orbitron', sans-serif; color: rgb(195, 0, 255); text-shadow:
+  0 0 .5rem rgba($cta-color, .5),
+  0 -1px 0 rgba(white, 1),
+  0 1px 0 rgba(black, 1),
+  0 0 5rem rgba($cta-color, 1),
+  0 0 5rem rgba($cta-color, 1),
+  0 0 5rem rgba($cta-color, 1);}

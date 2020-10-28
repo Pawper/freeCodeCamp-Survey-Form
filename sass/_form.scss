@@ -3,7 +3,7 @@
 .form {
   user-select: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
   color: rgba(white, 0.9);
 
@@ -33,7 +33,7 @@
         }
       }
 
-      &:not(:placeholder-shown):not([placeholder="Your gender"]) {
+      &:not(:placeholder-shown) {
         background: rgba($cta-color, .15);
         box-shadow:
           inset 1px 1px 0 $cta-color,
@@ -61,8 +61,7 @@
       left: 0;
       width: 100%;
       height: calc(100% - 1.25rem);
-      background-color: rgba(black, 0.75);
-
+      background-color: rgba(black, 0.5);
       z-index: -1;
 
       @-moz-document url-prefix() {
@@ -89,6 +88,12 @@
     gap: .5rem;
     grid-template-rows: 0 auto;
     grid-template-columns: max-content 1fr;
+
+    &::before {
+      @-moz-document url-prefix() {
+        height: calc(100% + .8rem);
+      }
+    }
 
     legend {
       grid-area: 1 / 1 / 2 / -1;
@@ -129,19 +134,6 @@
     }
   }
 
-  .actualcheckbox {
-    @include box(input);
-    
-    &:checked {
-      &::before {
-        position: absolute;
-        left: .5rem;
-        text-align: center;
-        text-shadow: none;
-      }
-    }
-  }
-
   .standalone-checkbox:checked {
     margin-left: 1rem;
 
@@ -153,7 +145,7 @@
       left: 50%;
       margin-left: calc(-1 * (50% - 1rem));
       border-radius: .5rem;
-      background-color: rgba($cta-color, .15);
+      background-color: rgba($cta-color, .25);
       backdrop-filter: blur(5px) saturate(200%);
       box-shadow:
         inset 1px 1px 0 $cta-color,
@@ -164,6 +156,12 @@
     }
   }
 
+  .unpreferred:checked {
+    margin-bottom: .65rem;
+    @-moz-document url-prefix() {
+      margin-bottom: .6rem;
+    }
+  }
   .unpreferred:checked ~ *:not([for="unpreferred"]),
   .any-all:checked ~ *:not([for="any-all"]) {
     transform: scaleY(0);
@@ -174,6 +172,7 @@
     padding: 0;
     position: absolute;
     width: 91%;
+    bottom: 0;
     left: 1.5rem;
     transition: all .3s ease-out;
   }
@@ -226,6 +225,20 @@
         }
 
         &:hover::after {
+          color: white;
+        }
+      }
+
+      span {
+        color: gray;
+        grid-column: 1 / -1;
+        font-size: 1.15rem;
+        white-space: nowrap;
+        text-align: center;
+        line-height: 0;
+        margin-bottom: .5rem;
+
+        &:hover {
           color: white;
         }
       }
