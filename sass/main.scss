@@ -27,6 +27,7 @@ body {
 }
 
 .attribution {
+  grid-area: 1 / 1 / -1 / -1;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -40,4 +41,10 @@ body {
   box-shadow: 0 0 1rem black;
   font-size: 1.2rem;
   backdrop-filter: blur(5px);
+
+  @media only screen and (max-width: 900px) {
+    text-align: center;
+    left: 0;
+    width: 100vw;
+  }
 }

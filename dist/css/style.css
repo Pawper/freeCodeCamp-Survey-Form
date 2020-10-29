@@ -871,59 +871,77 @@
     display: grid;
     grid-template-rows: min-content auto; }
 
-.body {
+body {
   width: 100%;
   height: 100%;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  display: grid;
+  grid-template-rows: 1fr min-content;
+  grid-template-columns: 1fr min-content;
+  place-items: start; }
+  @media only screen and (min-width: 900px) {
+    body {
+      height: 100vh;
+      grid-template-columns: 1fr;
+      place-items: center; } }
 
 .neon-lights {
+  grid-area: 1 / 1 / -1 / -1;
+  width: 100%;
   max-width: 900px;
-  margin: 0 auto;
   position: relative;
   background-color: rgba(0, 0, 0, 0.5);
-  background-image: radial-gradient(ellipse at top left, rgba(174, 0, 255, 0.25) 25%, transparent 40%), radial-gradient(ellipse at bottom right, rgba(174, 0, 255, 0.25) 25%, transparent 70%);
-  backdrop-filter: blur(5px) saturate(200%);
-  border-radius: .5rem;
-  border-bottom: 2px solid rgba(174, 0, 255, 0.5);
-  height: auto;
+  background: radial-gradient(ellipse at bottom right, rgba(174, 0, 255, 0.1) 25%, transparent 70%);
+  background-attachment: fixed;
+  backdrop-filter: blur(5px) saturate(200%) brightness(50%);
+  border-radius: .3rem;
+  border-bottom-right-radius: 2rem;
+  border-bottom: 2px solid rgba(174, 0, 255, 0.75);
   margin-bottom: 6rem; }
+  @media only screen and (min-width: 900px) {
+    .neon-lights {
+      box-shadow: 0 0 1rem rgba(174, 0, 255, 0.5); } }
   .neon-lights::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 4rem;
+    width: 3rem;
     height: 100%;
     background: url("../img/left-pane.svg");
     background-size: 100% 100%;
-    filter: drop-shadow(0 0 2rem #ae00ff);
     z-index: -1;
-    border-radius: .5rem; }
+    border-radius: .5rem;
+    filter: drop-shadow(5rem 0 2rem rgba(174, 0, 255, 0.25)) drop-shadow(20rem 0 2rem rgba(174, 0, 255, 0.1)) drop-shadow(0 0 0.5rem #ae00ff); }
   .neon-lights::after {
     content: '';
     position: absolute;
-    top: 0;
+    top: -1rem;
     left: 0;
-    height: 2rem;
+    height: 1.5rem;
     width: 100%;
-    background: #ae00ff;
-    filter: drop-shadow(0 0 2rem #ae00ff);
+    background: #c300ff;
     z-index: -1;
     border-radius: .5rem; }
+    @media only screen and (min-width: 900px) {
+      .neon-lights::after {
+        filter: drop-shadow(0 0 2rem #ae00ff) drop-shadow(0 0 0.5rem #ae00ff); } }
 
 .container {
   margin: 1rem auto 0 auto;
   display: grid;
   max-width: 900px;
   padding: 2rem;
+  margin-top: -1rem;
   padding-left: 5rem;
   backdrop-filter: blur(5px);
-  border-radius: .5rem;
+  border-radius: .3rem;
+  border-bottom-right-radius: 2rem;
   border-top: 0;
   border-right: 2px solid rgba(255, 255, 255, 0.25);
-  border-left: 2px solid rgba(255, 255, 255, 0.25);
+  border-left: 2px solid rgba(255, 255, 255, 0.5);
   position: relative;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.75) 0.25%, rgba(255, 255, 255, 0.25) 0.65%, transparent 15%); }
+  background: linear-gradient(rgba(255, 255, 255, 0.75) 0.25%, rgba(255, 255, 255, 0.1) 0.65%, transparent 15%); }
 
 #description {
   padding-bottom: 1rem; }
@@ -1001,8 +1019,26 @@ select {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Orbitron', sans-serif;
-  color: #c300ff;
-  text-shadow: 0 0 0.5rem rgba(174, 0, 255, 0.5), 0 -1px 0 white, 0 1px 0 black, 0 0 5rem #ae00ff, 0 0 5rem #ae00ff, 0 0 5rem #ae00ff; }
+  color: transparent;
+  position: relative;
+  text-shadow: none;
+  z-index: 1; }
+  h1::after, h2::after, h3::after, h4::after, h5::after, h6::after {
+    content: attr(data-content);
+    background-image: linear-gradient(rgba(174, 0, 255, 0.5) 45%, #ae00ff 60%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2; }
+  h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
+    content: attr(data-content);
+    text-shadow: 0 0 0.5rem rgba(174, 0, 255, 0.5), 0 -2px 4px rgba(255, 255, 255, 0.5), 0 -1px 0 rgba(255, 255, 255, 0.75), 0 1px 2px #0c0c41, 0 2px 2px #0c0c41, 0 0 5rem #ae00ff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; }
 
 html {
   font-size: 62.5%; }
@@ -1023,6 +1059,7 @@ body {
   overflow-x: hidden; }
 
 .attribution {
+  grid-area: 1 / 1 / -1 / -1;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -1036,3 +1073,8 @@ body {
   box-shadow: 0 0 1rem black;
   font-size: 1.2rem;
   backdrop-filter: blur(5px); }
+  @media only screen and (max-width: 900px) {
+    .attribution {
+      text-align: center;
+      left: 0;
+      width: 100vw; } }
