@@ -79,10 +79,37 @@ select {
   font-size: 1.4rem !important;
 }
 
-h1, h2, h3, h4, h5, h6 { font-family: 'Orbitron', sans-serif; color: rgb(195, 0, 255); text-shadow:
-  0 0 .5rem rgba($cta-color, .5),
-  0 -1px 0 rgba(white, 1),
-  0 1px 0 rgba(black, 1),
-  0 0 5rem rgba($cta-color, 1),
-  0 0 5rem rgba($cta-color, 1),
-  0 0 5rem rgba($cta-color, 1);}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', sans-serif;
+  // color: rgb(195, 0, 255); 
+  color: transparent;
+  position: relative;
+  text-shadow: none;
+  z-index: 1;
+  
+  &::after {
+    content: attr(data-content);
+    background-image: linear-gradient(rgba($cta-color, .5) 45%, rgba($cta-color, 1) 60%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    position: absolute;
+    top: 0;
+    left: 0;    
+    z-index: 2;
+  }
+
+  &::before {
+    content: attr(data-content);
+    text-shadow:
+    0 0 .5rem rgba($cta-color, .5),
+    0 -2px 4px rgba(white, .5),
+    0 -1px 0 rgba(white, .75),
+    0 1px 2px rgba( rgb(12, 12, 65), 1),
+    0 2px 2px rgba( rgb(12, 12, 65), 1),
+    0 0 5rem rgba($cta-color, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+}
