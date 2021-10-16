@@ -70,9 +70,9 @@
             <label for="toggleB" class="radio-toggle__toggle"></label>
             <label for="toggleB" class="radio-toggle__label-b">Gendered</label>
         </div>
-        <div class="genderFields">
-          <details class="tag-box hidden">
-            <summary class="tag-box__summary">Gender Expression(s)<ul class="tag-box__tags" id="gender-expresions"></ul></summary>
+        <div class="genderFields hidden">
+          <details class="tag-box">
+            <summary class="tag-box__summary">Gender Expression(s)<ul class="tag-box__tags" id="gender-expressions"></ul></summary>
             <div class="tag-box__expand-container">
               <input class="tag-box__add-input" type="text" placeholder="femme, butch, masc">
               <button type="button" class="btn--add tag-box__add-btn" title="Add Pronoun">
@@ -80,29 +80,31 @@
               </button>
             </div>
           </details>
-          <details class="checkbox-box hidden">
+          <details class="checkbox-box">
             <summary class="checkbox-box__summary">Gender(s)<ul class="checkbox-box__tags" id="genders"></ul></summary>
             <div class="checkbox-box__expand-container">
-              <label for="Nonbinary" class="checkbox-box__checkbox-label">
-                <input type="checkbox" id="Nonbinary" class="checkbox checkbox-box__checkbox" name="gender" value="Nonbinary">
-                <span class="checkbox-box__text">Nonbinary</span>
-              </label>
-              <label for="Genderfluid" class="checkbox-box__checkbox-label">
-                <input type="checkbox" id="Genderfluid" class="checkbox checkbox-box__checkbox" name="gender" value="Genderfluid">
-                <span class="checkbox-box__text">Genderfluid</span>
-              </label>
-              <label for="Genderqueer" class="checkbox-box__checkbox-label">
-                <input type="checkbox" id="Genderqueer" class="checkbox checkbox-box__checkbox" name="gender" value="Genderqueer">
-                <span class="checkbox-box__text">Genderqueer</span>
-              </label>
-              <label for="Woman" class="checkbox-box__checkbox-label">
-                <input type="checkbox" id="Woman" class="checkbox checkbox-box__checkbox" name="gender" value="Woman">
-                <span class="checkbox-box__text">Woman</span>
-              </label>
-              <label for="Man" class="checkbox-box__checkbox-label">
-                <input type="checkbox" id="Man" class="checkbox checkbox-box__checkbox" name="gender" value="Man">
-                <span class="checkbox-box__text">Man</span>
-              </label>
+              <div class="checkbox-box__checklist">
+                <label for="Nonbinary" class="checkbox-box__checkbox-label">
+                  <input type="checkbox" id="Nonbinary" class="checkbox checkbox-box__checkbox" name="gender" value="Nonbinary">
+                  <span class="checkbox-box__text">Nonbinary</span>
+                </label>
+                <label for="Genderfluid" class="checkbox-box__checkbox-label">
+                  <input type="checkbox" id="Genderfluid" class="checkbox checkbox-box__checkbox" name="gender" value="Genderfluid">
+                  <span class="checkbox-box__text">Genderfluid</span>
+                </label>
+                <label for="Genderqueer" class="checkbox-box__checkbox-label">
+                  <input type="checkbox" id="Genderqueer" class="checkbox checkbox-box__checkbox" name="gender" value="Genderqueer">
+                  <span class="checkbox-box__text">Genderqueer</span>
+                </label>
+                <label for="Woman" class="checkbox-box__checkbox-label">
+                  <input type="checkbox" id="Woman" class="checkbox checkbox-box__checkbox" name="gender" value="Woman">
+                  <span class="checkbox-box__text">Woman</span>
+                </label>
+                <label for="Man" class="checkbox-box__checkbox-label">
+                  <input type="checkbox" id="Man" class="checkbox checkbox-box__checkbox" name="gender" value="Man">
+                  <span class="checkbox-box__text">Man</span>
+                </label>
+              </div>
               <input class="checkbox-box__add-input" type="text" placeholder="Add a gender">
               <button type="button" class="btn--add checkbox-box__add-btn" title="Add gender">
                 <i class="fas fa-plus"></i>
@@ -196,7 +198,7 @@
   <span class="attribution">Background photo by <a href="https://unsplash.com/@alekversusworld?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Alek Kalinowski</a> on <a href="https://unsplash.com/s/photos/spaceship?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
   <!-- Put scripts down here so HTML render isn't stopped to load JS -->
   <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/index.js"></script>
 </body>
 
 </html>

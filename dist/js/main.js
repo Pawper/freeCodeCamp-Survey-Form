@@ -75,7 +75,7 @@ addBtnPulse();
 
 const pronounSelect = document.getElementById("dropdown");
 async function fillPronounSetSelect() {
-  const response = await fetch("./pronouns.tab");
+  const response = await fetch("../pronouns.tab");
   const text = await response.text();
   const pronounSets = await text.replaceAll("\t", " / ").split("\n");
   pronounSets.forEach((pronounSet) => {

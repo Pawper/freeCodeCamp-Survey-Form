@@ -119,18 +119,18 @@
       gap: .5rem;
       display: relative;
 
-      .hidden {
-        transform: scaleY(0);
-        transform-origin: top center;
-        max-height: 0;
-        opacity: 0;
-        margin: 0;
-        padding: 0;
-        position: absolute;
-        width: 91%;
-        left: 1.5rem;
-        transition: all .1s ease-out;
-      }
+    }
+    .hidden {
+      transform: scaleY(0);
+      transform-origin: top center;
+      max-height: 0;
+      opacity: 0;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      width: 91%;
+      left: 1.5rem;
+      transition: all .1s ease-out;
     }
   }
 

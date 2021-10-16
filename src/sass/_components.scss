@@ -538,8 +538,7 @@
     align-items: center;
     padding: 0.5rem 0.5rem 0.5rem 1.5rem;
 
-    &:empty:before {
-      content: "No tags added.";
+    & span {
       color: gray;
       line-height: 1;
     }
@@ -617,6 +616,12 @@
     gap: 0.5rem;
   }
 
+  &__checklist {
+    display: grid;
+    gap: 0.5rem;
+    grid-column: 1/ -1;
+  }
+
   &__checkbox-label {
     @include border(unfocus);
     border-radius: 3px;
@@ -624,7 +629,6 @@
     padding: 1rem;
     transition: all 0.1s ease-in;
     position: relative;
-    grid-column: 1/ -1;
 
     &:hover input[type="checkbox"] + span::after,
     & input[type="checkbox"]:focus-visible + span::after {
